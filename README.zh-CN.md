@@ -7,7 +7,10 @@
 
 [English](README.md) · [看看已支持的游戏](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=readme-zh)
 
-![从提问到结合游戏情境的领航](assets/journey.svg)
+[![从提问到结合游戏情境的领航](assets/journey.svg)](https://gamenavigator.raycraftlab.com/?lang=zh-CN&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=demo-zh#demo)
+
+[看看 25 秒开始使用导览](https://gamenavigator.raycraftlab.com/?lang=zh-CN&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=demo-zh#demo)。
+这是产品页与安装口令的真实录屏，不是游戏内问答演示。提供七种语言字幕，点击后才播放。
 
 ## 开始使用
 
