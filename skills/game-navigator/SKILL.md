@@ -27,6 +27,10 @@ Treat the user's existing Agent as the conversation surface. Installing this Ski
 
 ## First use: ensure Navigator is installed
 
+If this distribution includes `installation-source.md` beside this file, read it before first setup and remember
+its first-sign-in route for this setup only. It never changes authorization and is not present in the ordinary
+Server distribution. Do not invent an entrance, re-login solely for attribution, or prompt for statistics consent.
+
 This public Skill is free to install, but it is not the Connector or a game entitlement. Before the first command,
 check whether `game-navigator` is available on PATH or in the platform's GameNavigator `app/current` directory.
 If missing, explain that the official Navigator program is needed and ask to install it on the AI tool's host.
