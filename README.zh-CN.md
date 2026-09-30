@@ -28,6 +28,21 @@ AI 工具需要支持 Skill，并能在本机执行安装。如果它不能安�
 如果你熟悉从 GitHub 直接安装 Skill，目录是 [`skills/game-navigator`](skills/game-navigator)。
 仅装 Skill 不等于装好程序，首次使用时它会继续引导安装官方领航端。
 
+<details>
+<summary>已经在使用 skills CLI？</summary>
+
+可以请你的 AI 工具检查并执行：
+
+```sh
+npx skills add RayJiang4S/game-navigator-skill --skill game-navigator
+```
+
+按提示选择你的 AI 工具。默认装到当前项目；如需跨项目使用，可加 `--global`。
+然后在 AI 工具中说“帮我开始使用游戏领航师”，它会继续引导安装官方程序和登录。
+安装不会启用试用。这条可选路径需要 Node.js；上面的普通安装方式不要求用户另装它。
+
+</details>
+
 登录后，告诉领航师游戏是在这台 Windows 电脑上，还是另一台 Windows 设备上。
 另一台设备会使用可点击的安装器和短配对码，通常两台设备需要在同一家庭网络。
 AI 工具所在的领航端支持 Windows、macOS 和受支持的 Linux；游戏端目前运行于 Windows。

@@ -27,6 +27,22 @@ Your AI tool needs access to local installation tools and Skills. If it cannot i
 Already installing Skills directly from GitHub? The Skill is in [`skills/game-navigator`](skills/game-navigator).
 It will help you install the official Navigator on first use; copying a Skill alone does not install the program.
 
+<details>
+<summary>Already using the skills CLI?</summary>
+
+Ask your AI tool to review and run:
+
+```sh
+npx skills add RayJiang4S/game-navigator-skill --skill game-navigator
+```
+
+Choose your AI tool when prompted. This installs the handbook in the current project; add `--global`
+if you want it available across projects. Then ask for Game Navigator setup in your AI tool.
+The handbook guides official program installation and sign-in. Installation does not activate a trial.
+Node.js is needed for this optional CLI route, not for the ordinary setup above.
+
+</details>
+
 Sign in, then tell Navigator whether the game runs on this Windows PC or another Windows device.
 For a separate device, it guides you to a clickable installer and a short pairing code. Both devices normally
 share a home network. Your AI tool can run on Windows, macOS or supported Linux systems; Play runs on Windows.
