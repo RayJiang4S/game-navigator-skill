@@ -7,11 +7,7 @@ Game Navigator connects a compatible AI tool to supported games on your Windows 
 
 [简体中文](README.zh-CN.md) · [Explore supported games](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=readme-en)
 
-[![From a question to game-aware guidance](assets/journey.svg)](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=demo-en#demo)
-
-[Watch the 25-second getting-started tour](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=demo-en#demo).
-An actual recording of the product page and setup prompt, not a gameplay or AI-answer demonstration.
-The interface is in Chinese; English and six other caption languages are available. Click to play; no autoplay.
+![From a question to game-aware guidance](assets/journey.svg)
 
 ## Start here
 
