@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="260" viewBox="0 0 960 260" role="img" aria-labelledby="title desc">
+  <title id="title">Game Navigator: your AI tool meets your adventure</title>
+  <desc id="desc">Ask your usual AI tool. Navigator joins local game context with authorized guidance. Saves and frames stay off the Game Navigator Server.</desc>
+  <rect width="960" height="260" rx="24" fill="#101811"/>
+  <g fill="#1c271c" stroke="#d7b56d" stroke-opacity=".5">
+    <rect x="34" y="54" width="270" height="150" rx="16"/>
+    <rect x="345" y="54" width="270" height="150" rx="16"/>
+    <rect x="656" y="54" width="270" height="150" rx="16"/>
+  </g>
+  <g stroke="#d7b56d" stroke-width="2" fill="none"><path d="M312 129h24m-7-6 7 6-7 6M623 129h24m-7-6 7 6-7 6"/></g>
+  <g font-family="system-ui,sans-serif" text-anchor="middle">
+    <g fill="#d7b56d" font-size="13" letter-spacing="2"><text x="169" y="87">ASK NATURALLY</text><text x="480" y="87">CONNECT THE CONTEXT</text><text x="791" y="87">KEEP EXPLORING</text></g>
+    <g fill="#f6f1e6" font-size="23"><text x="169" y="130">Your usual AI tool</text><text x="480" y="130">Game Navigator</text><text x="791" y="130">Your next step</text></g>
+    <g fill="#c2b9a6" font-size="14"><text x="169" y="165">Routes · choices · builds</text><text x="480" y="165">Local state · authorized guidance</text><text x="791" y="165">A hint, not a spoiler</text></g>
+  </g>
+</svg>
