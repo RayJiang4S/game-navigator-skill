@@ -9,6 +9,8 @@ Game Navigator connects a compatible AI tool to supported games on your Windows 
 
 ![From a question to game-aware guidance](assets/journey.svg)
 
+[Watch a real skills question become practical advice](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=guidance-demo-en#guidance-demo) — narrated, captioned, and available in seven page languages.
+
 ## Start here
 
 Copy this message into **Codex, Cursor, or Claude Code** on your computer:

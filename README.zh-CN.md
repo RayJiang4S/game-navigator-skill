@@ -9,6 +9,8 @@
 
 ![从提问到结合游戏情境的领航](assets/journey.svg)
 
+[看看真实的技能提问如何变成下一步建议](https://gamenavigator.raycraftlab.com/?lang=zh-CN&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=guidance-demo-zh#guidance-demo) · 配音与字幕随页面语言切换，支持七种语言。
+
 ## 开始使用
 
 把下面这段话复制给电脑上正在使用的 **WorkBuddy、Codex、Cursor 或 Claude Code**：
