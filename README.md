@@ -7,6 +7,10 @@ Game Navigator connects a compatible AI tool to supported games on your Windows 
 
 [简体中文](README.zh-CN.md) · [Explore supported games](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=readme-en)
 
+**What you need:** a Skill-capable AI tool on your computer and a supported game on Windows.
+Install the handbook and local Navigator, sign in, then connect the gaming device. Choose a game trial only
+when you want it: up to three games, five days each. Your AI tool's fees are separate.
+
 ![From a question to game-aware guidance](assets/journey.svg)
 
 [Watch a real skills question become practical advice](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=guidance-demo-en#guidance-demo) — narrated, captioned, and available in seven page languages.
@@ -76,6 +80,25 @@ Game saves, frames and local journey memory are not uploaded to the Game Navigat
 Your chosen AI tool may process information you give it under its own policies.
 Optional community improvement sharing is off until you agree. Navigator does not play for you, edit memory,
 or bypass anti-cheat. Optional observers require a separate explanation and your agreement.
+
+<details>
+<summary>What gets installed, and what should I trust?</summary>
+
+The GitHub/directory package contains a readable handbook, not the game-reading program. The official setup
+downloads a closed-source local Navigator and a small base catalog; Play is installed on the Windows gaming
+device separately. Game packs are installed on demand, not all at once. Optional game observers are separate
+choices and may add files to a game's folder; ordinary setup does not authorize them.
+
+The installers check downloaded archives against SHA-256 values from the same HTTPS service. This detects
+corruption or a mismatch; it is not an independent publisher signature or proof that software is harmless.
+The current release is beta, not a claim of fully signed/notarized stable delivery. Review the installer before
+execution, and stop if verification fails or the operating system blocks it—do not disable protection.
+
+Server handles sign-in, device pairing, access and updates. Gameplay evidence stays local to Navigator/Play,
+but your chosen AI host may process it under its own policy. A directory listing is not a security endorsement.
+See [security and trust boundaries](SECURITY.md) for details and private reporting.
+
+</details>
 
 [Privacy](https://gamenavigator.raycraftlab.com/privacy?lang=en) · [Terms](https://gamenavigator.raycraftlab.com/terms?lang=en)
 

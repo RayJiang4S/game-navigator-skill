@@ -7,6 +7,10 @@
 
 [English](README.md) · [看看已支持的游戏](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=readme-zh)
 
+**开始前需要：**电脑上能使用 Skill 的 AI 工具，以及 Windows 上的已支持游戏。
+安装 Skill 和本地领航端，登录后连接游戏设备。想试哪款再确认领取：最多 3 款，每款 5 天。
+你使用的 AI 工具费用另行计算。
+
 ![从提问到结合游戏情境的领航](assets/journey.svg)
 
 [看看真实的技能提问如何变成下一步建议](https://gamenavigator.raycraftlab.com/?lang=zh-CN&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=guidance-demo-zh#guidance-demo) · 配音与字幕随页面语言切换，支持七种语言。
@@ -75,6 +79,22 @@ AI 工具所在的领航端支持 Windows、macOS 和受支持的 Linux；游戏
 你选择的 AI 工具可能处理交给它的信息，具体以该工具的政策为准。
 自动共创信息收集默认关闭，只有你同意才开启。领航师不代玩、不修改内存、不绕过反作弊；
 可选观察组件会单独解释用途与影响，再由你决定。
+
+<details>
+<summary>会安装什么？安全方面需要知道什么？</summary>
+
+GitHub 和目录里的包是可阅读的使用手册，不是读取游戏的程序。官方安装会下载闭源的本地领航端
+和基础目录；Windows 游戏设备上的游戏端另行安装。游戏包按需安装，不会一次装全。
+可选游戏观察组件需要单独决定，可能向游戏目录添加文件；普通安装不代表同意安装它们。
+
+安装器会用同一 HTTPS 服务提供的 SHA-256 校验下载包。这能发现损坏或不一致，但不是独立的
+发行者签名，也不能证明软件绝对无害。当前是 beta，不宣称已达到完整签名、公证的正式版标准。
+执行前应检查安装脚本；校验失败或系统拦截时应停止，不要关闭安全保护。
+
+服务端处理登录、设备配对、权限和更新；游戏资料留在领航端和游戏端，但你选择的 AI 工具可能
+按其政策处理这些资料。被目录收录不等于通过安全背书。详情和私下报障方式见[安全说明](SECURITY.md)。
+
+</details>
 
 [隐私说明](https://gamenavigator.raycraftlab.com/privacy?lang=zh-CN) · [服务条款](https://gamenavigator.raycraftlab.com/terms?lang=zh-CN)
 
