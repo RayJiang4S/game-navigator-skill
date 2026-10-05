@@ -62,6 +62,15 @@ These are examples, not promises for every game. Available information varies by
 some state comes from the current screen, some from saves, and some from optional reviewed observers.
 [Check each game's current capabilities](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=capabilities-en).
 
+### The Witcher 3 Remastered
+
+Plan around the new skill tree and mutations, compare the equipment on screen, and prepare alchemy from
+the recipe and ingredient view. Reviewed saves also supply your saved level, available skill points, and
+experience. You can ask about a visible screen before saving; off-screen equipment, quest variables, and
+unsaved internal changes are not fully readable. No save editor or research toolkit is installed.
+The [product page](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=witcher-remastered-en)
+is the source of current per-game support, including version-specific limits.
+
 ## Skill, trial and paid access
 
 **The Skill is open source; the product runtime and commercial service are not.**

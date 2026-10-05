@@ -62,6 +62,14 @@ AI 工具所在的领航端支持 Windows、macOS 和受支持的 Linux；游戏
 有的来自当前画面，有的来自存档，有的需要单独同意安装经过审查的观察组件。
 [每款游戏当前能帮什么，以产品页为准](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=capabilities-zh)。
 
+### 《巫师 3》重制版已支持
+
+结合新的技能树与突变页面规划构筑，对比眼前装备，按配方和材料页面做好炼金准备。
+经过验证的存档还能提供保存时的等级、可用技能点和经验。不存档也能针对眼前画面提问；
+未展示的装备、任务变量和未保存的内部变化，目前不能完整读取。不会给你安装存档编辑器或研究工具。
+[产品页](https://gamenavigator.raycraftlab.com/?lang=zh-CN&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=witcher-remastered-zh)
+持续更新各游戏的实际能力与版本范围。
+
 ## 免费 Skill，不等于免费开放全部功能
 
 **这里的 Skill 开源；核心程序和商业服务仍然闭源。**
