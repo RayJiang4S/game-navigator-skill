@@ -28,7 +28,7 @@ for diagnostics only. `status.liveState` is one of `play-reachable`, `play-offli
 ## Login and pairing
 
 ```bash
-"$GN" login --begin --pretty
+"$GN" login --begin --open --pretty
 "$GN" login --wait --id LOGIN_ID --pretty
 "$GN" me --pretty
 "$GN" account --pretty
@@ -45,7 +45,9 @@ for diagnostics only. `status.liveState` is one of `play-reachable`, `play-offli
 ```
 
 Do not log in during the install command. On the first conversation, if `journey.stage` is `recognize-player`, run
-`login --begin`, speak `prompt`, and give `loginUrl`. Then `login --wait --id`. `login --begin` keeps a one-time secret
+`login --begin --open`, speak `prompt`, and give `loginUrl`. If `browserOpened` is false, explicitly ask the player
+to open that link on a device they can use; remote/headless hosts must not claim a browser opened. An opened browser
+is not a completed login. Then `login --wait --id`. `login --begin` keeps a one-time secret
 on this machine, so `login --wait --id` is safe to rerun: if a previous wait was interrupted (for example the turn
 ended), the next wait with the same `LOGIN_ID` still completes the same sign-in until the link expires. Only when it
 returns `expired` start a new login. If the stage is
