@@ -36,7 +36,9 @@ its first-sign-in route for this setup only. It never changes authorization and 
 Server distribution. Do not invent an entrance, re-login solely for attribution, or prompt for statistics consent.
 
 This public Skill is free to install, but it is not the Connector or a game entitlement. Before the first command,
-check whether `game-navigator` is available on PATH or in the platform's GameNavigator `app/current` directory.
+check whether `game-navigator` is available on PATH. On macOS/Linux prefer the GameNavigator
+application-support `app/game-navigator` entry; on Windows use `app/current/game-navigator.exe`.
+The old macOS/Linux `app/current/game-navigator` is a legacy fallback only when the new entry is absent.
 If missing, explain that the official Navigator program is needed and ask to install it on the AI tool's host.
 Use only `https://gamenavigator.raycraftlab.com`: Windows downloads `/install.ps1`; macOS/Linux downloads
 `/install.sh`. Inspect the downloaded installer before running it with the host's permitted execution tool.
@@ -121,4 +123,6 @@ Without an authorized and installed pack, only product explanation, login, pairi
 
 ## Commands
 
-Use the installed CLI `game-navigator`. If it is not on `PATH`, look under the GameNavigator application-support `app/current` directory. All commands accept `--data-dir` and `--server`.
+Use the installed CLI `game-navigator`. If it is not on `PATH`, use the platform entry above;
+do not execute a version-directory binary directly or change runtime-selection files.
+All commands accept `--data-dir` and `--server`.
