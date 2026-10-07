@@ -15,6 +15,8 @@ to capture or answer. The second command is needed only when a permitted questio
 2. To see the screen: `game-navigator snapshot --frame-out /tmp/gn-frame.png --pretty`, then open the image at the returned `framePath`. No `--help` or file search is needed.
 
 Add `game-navigator game-context --purpose <exploration|readiness|equipment|party|shop|skill-learning|construction> --pretty` when saved state or pack knowledge can answer.
+For a specific item or skill omitted from the knowledge subset, use `--focus-entity` only with its exact
+ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
 
 ## Talking to the player
 

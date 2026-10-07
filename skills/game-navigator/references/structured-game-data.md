@@ -69,6 +69,13 @@ For personalized decisions, use the Navigator's read-through context rather than
 "$GN" game-context --purpose exploration --pretty
 ```
 
+When a question targets one exact entity ID already present in returned verified `stateFacts`,
+add `--focus-entity OBSERVED_ID` to prioritize it within the same 128-reference budget. Do not guess
+IDs, enumerate a catalog, or use names/questions as IDs. `knowledge-focus-unobserved` means the
+reference was not verified in this state, not proof that the player does not own it;
+`knowledge-focus-unmapped` means it was selected but Server returned no reviewed definition.
+Neither a priority request nor a returned definition proves live ownership or complete coverage.
+
 Use `readiness` for any saved whole-build review: after a level-up, new companion, strong acquisition, accumulated resources, before a difficult segment, or whenever the player wants to reorganize. It intentionally requests the union of character stats, inventory, equipment, party, learned/equipped skills, job points, and resources, plus reviewed character/job/skill/equipment/item definitions. Read [build-readiness-review.md](build-readiness-review.md) for its checkpoint and recommendation rules.
 
 The response is usable as a complete structured answer only when the relevant state facts, reviewed entity definitions, and required capabilities are present. Read `decisionPolicy`: it is the Server-authorized, exact-Build and purpose-specific minimum state, entity type, comparison, objective, output, and fallback slice. Do not reconstruct a missing policy from remembered rules or stale local files. `missingCapabilities` includes required policy state that was not proved by the current facts/capabilities and `entity-type:*` entries for required Build-scoped definitions that were not returned; it is a bounded fallback plan, not an empty inventory. Use `--cached` only for an explicitly offline rules/history answer; preserve both `stateChangedAt` (the save content changed) and `stateVerifiedAt` (the same content was most recently rechecked), plus `stateStale`, in the answer.
