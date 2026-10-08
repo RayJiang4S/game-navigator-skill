@@ -2,15 +2,15 @@
 
 Use this workflow whenever the player wants to reassess the current build after leveling up, gaining a companion, obtaining a potentially important item/equipment/skill, accumulating JP or resources, preparing for a difficult segment, or simply deciding it is time to reorganize.
 
-## Refresh the intended checkpoint
+## Refresh and identify the evidence
 
 1. Call `game-navigator status --pretty`, then `game-navigator snapshot --no-frame --pretty`.
-2. Confirm the foreground game, AppID, BuildID, profile/slot identity, and save adapter status.
-3. Inspect the save adapter's `sourceFile`, `sourceSlotKind`, `sourceLastWriteTimeUtc`, state fingerprint, and warnings. `stateVerifiedAt` advancing while the fingerprint and source write time stay unchanged means the same checkpoint was re-read; it does not include unsaved play.
-4. If the player says he saved after known changes but the checkpoint did not advance, stop the audit and explain that the new state is not captured. Do not substitute stale values or request unrelated screenshots.
+2. Confirm the foreground game, AppID, BuildID, profile/slot identity, and eligible adapter status. Use only installed, consented, Build-valid sensors; an experimental reader is not an available capability.
+3. Identify the source and freshness of each needed area independently: current live observation, saved checkpoint, or unknown. For checkpoint evidence, inspect `sourceFile`, `sourceSlotKind`, `sourceLastWriteTimeUtc`, state fingerprint, and warnings. `stateVerifiedAt` advancing while the fingerprint and source write time stay unchanged means the same checkpoint was re-read; it does not include unsaved play. A refreshed snapshot alone does not make checkpoint or historical facts live.
+4. If the player says he saved after known changes but the checkpoint did not advance, explain which fields are not captured. Continue independently verified areas without substituting stale values. When Play is unavailable, cached observations are historical, even if they were live when captured; confirm the minimum current information before giving action-sensitive advice.
 5. Run `game-navigator game-context --purpose readiness --pretty`.
 
-An autosave is sufficient; a manual save is not required. Never write the save or inspect process memory.
+For checkpoint-only areas an autosave is sufficient; do not require a manual save. Eligible live facts can cover unsaved changes without a save. Use the product's reviewed sensor output, never ad-hoc memory inspection, save writes, or input automation.
 
 ## Build one joined review
 
@@ -41,4 +41,4 @@ For each change, name the character, slot/menu, current value, target value, rea
 
 Use at most one deliberate overview screen per missing area, such as the full equipment, skill, roster, or shop list. Do not ask the player to highlight every item. Record reviewed reusable definitions in the Game Pack; keep transient ownership and loadouts in SQLite only.
 
-After the player applies changes, ask for one normal save when convenient, rerun `readiness`, and verify the resulting state diff. Do not claim an unsaved selection is applied merely because it was recommended or briefly visible. The review does not imply that story progression must immediately follow.
+After the player applies changes, rerun `readiness` and verify the resulting state diff from eligible current evidence. Ask for one normal save when convenient only for changes that the available reader observes through checkpoints. Do not claim a selection is applied merely because it was recommended, briefly highlighted, or remains in an offline cache. Keep unverified areas unknown. The review does not imply that story progression must immediately follow.
