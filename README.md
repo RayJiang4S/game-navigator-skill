@@ -71,6 +71,28 @@ unsaved internal changes are not fully readable. No save editor or research tool
 The [product page](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=witcher-remastered-en)
 is the source of current per-game support, including version-specific limits.
 
+#### Try a concrete equipment question
+
+Our October 5 check used the owner's existing save in Remastered v5.00c, Steam Build 25646871.
+Play captured two silver-sword tooltips with damage, passive effects, required level, condition and comparison
+indicators. The new skill-tree screen showed the reset abilities; no skill points were spent. The reviewed
+checkpoint reader returned **saved level 100, 108 available skill points and 0 available experience**.
+These are verified observations. The question and suggested response below illustrate how to use them;
+they are not a recorded AI conversation or a measured gameplay outcome.
+
+> “The update reset my skills. Which of these two silver swords should I keep for my build?
+> Compare what is visible, explain the tradeoffs, and keep story spoilers out.”
+
+A useful first response would ask you to show each tooltip and the current skill/mutation screen, then
+compare the visible damage and passive effects against the play style you choose. It should label the
+100/108/0 values as **saved**, ask about current learned/equipped skills if they are missing, and explain
+what each choice depends on before suggesting a change. A bigger damage number alone cannot settle a
+build comparison when its passive effects and your current skills are unknown.
+
+Keep your current loadout while inspecting: hover/navigate rather than equipping an item to view it.
+Start with this bounded comparison, then ask about preparation for a named boss once the relevant
+equipment, skills and encounter are known. You choose and perform every game action.
+
 ## Skill, trial and paid access
 
 **The Skill is open source; the product runtime and commercial service are not.**
