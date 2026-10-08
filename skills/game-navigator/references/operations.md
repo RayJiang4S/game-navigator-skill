@@ -169,6 +169,36 @@ game, Build and purpose. A copied manifest, old installation row, or session tok
 
 ## Steam, performance and device state
 
+### Explicit achievement history
+
+For a player's achievement question, first pass the requested game's pack guard. Check
+`play-capabilities` for `steam.achievement-history`; an older or non-Windows Play may not
+offer it. Obtain the exact AppId and observed installed Build from the selected Play's
+`steam inventory` result, requiring one matching installed game. Do not guess a Build,
+reuse a different device's inventory or substitute Steam's schema revision for it.
+
+```bash
+"$GN" steam achievements --app-id APPID --build OBSERVED_BUILD --confirm --pretty
+```
+
+The player's explicit achievement request authorizes this one local read; it does not
+authorize background collection or reading unrelated games. The command freezes the
+selected paired device, rechecks account/game-pack access before and after capture,
+and refuses changed device/session/build or outdated/uninstalled packs. It does not
+claim trials or update packs automatically. Follow the ordinary guarded installation
+flow when required; never bypass the command by opening personal Steam cache files.
+
+`recordedUnlocks` contains only positive timestamped cache records. `remainingAchievementsKnown`
+and `liveGameplayState` remain false. Empty records are unknown, not zero earned or proof
+of completion; capture time describes this read, not a fresh Steam online sync. Installed
+Build does not prove cached definitions belong to that Build. Do not treat native keys as
+localized titles or achievement conditions. Join only with reviewed knowledge and respect
+the player's spoiler preference; without verified coverage, do not compute percentage,
+remaining count, missing achievements or a completion route. History stays local to the
+Navigator request, is not persisted automatically, and is never sent through Server.
+
+### Library and device operations
+
 ```bash
 "$GN" steam library --pretty
 "$GN" steam wishlist --pretty
