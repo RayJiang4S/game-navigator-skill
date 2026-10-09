@@ -204,6 +204,24 @@ failures mean unavailable, not zero earned. Steam's Community XML is deprecated,
 availability is not promised. Do not weaken TLS, change profile privacy, retry endlessly
 or install an observer to force a result.
 
+If the Play-side synced read is unavailable, and the selected paired Play advertises
+both `steam.achievement-read-context` and `steam.achievement-read-complete`, one
+direct Navigator-host attempt is available. Explain that this host will contact Steam
+for that same locally verified account's public synced achievements, without sending
+personal progress to Server, then use the existing explicit achievement request:
+
+```bash
+"$GN" steam achievements --app-id APPID --build OBSERVED_BUILD --confirm --synced --via-navigator --pretty
+```
+
+This is not an arbitrary profile lookup or a Server proxy. Play issues a thirty-second
+single-use binding and rechecks its Steam owner, process and installation after the
+read. Navigator verifies account, selected pairing and game-pack access before and
+after the exchange. Identity-routing fields stay in the private peer exchange and
+are not CLI output or local history. Private profiles, changed bindings, missing
+definitions or unavailable transport still withhold progress. Do not call the two
+internal context commands through generic `play-command` or collect other games.
+
 If synced state is unavailable and `steam.achievement-history` exists, omit `--synced`
 to request the bounded local-history fallback for the same explicit question:
 
