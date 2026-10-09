@@ -175,6 +175,29 @@ return `available=true`, `refreshed=false`, `stateStale=true`: that is the last 
 current unsaved screen. The same Server request must match the exact installed Navigator instance, package version,
 game, Build and purpose. A copied manifest, old installation row, or session token alone cannot unlock game guidance.
 
+## Explicitly named Boss: static mechanics
+
+After the game's pack guard passes, when the player explicitly names the Boss or the current
+authorized frame identifies it, and the context lacks its reviewed definition:
+
+```bash
+"$GN" target-knowledge --game-id GAME_ID --build-id OBSERVED_BUILD --name "EXACT PUBLIC NAME" --pretty
+```
+
+Use the exact game and installed Build already verified for this device; never guess either.
+The name remains local. Navigator matches it against a bounded Server-authorized list of reviewed
+public compendium names, then requests only the matched canonical ID. It does not capture Play,
+upload the player's question, save the catalog locally, or enumerate arbitrary entity IDs.
+`matched=false` means no reviewed exact-name definition was returned, not that the enemy is absent.
+Do not try guessed aliases or scan other builds. If the installed CLI lacks this command, use the
+normal update path, not a substitute endpoint or stale local catalog.
+
+The result's `meaning` is `explicit-topic-static-definition-not-player-observation`.
+Keep it separate from `stateFacts`: it cannot establish the current enemy, health, phase, effective
+damage, equipped build or ability to win. Combine only with independently valid current-frame or
+checkpoint evidence, retaining their freshness and the player's spoiler preference. Do not look up
+unasked future enemies or bypass an expired/revoked pack when the Server rejects the query.
+
 ## Steam, performance and device state
 
 ### Explicit achievement progress and history
