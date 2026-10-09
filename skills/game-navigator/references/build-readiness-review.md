@@ -4,11 +4,20 @@ Use this workflow whenever the player wants to reassess the current build after 
 
 ## Refresh and identify the evidence
 
-1. Call `game-navigator status --pretty`, then `game-navigator snapshot --no-frame --pretty`.
+1. Follow `journey` and its pack guard. If the question needs the current Boss, HUD or loadout screen,
+   use `game-navigator readiness-context --pretty`: it joins one authorized frame capture with that
+   same observation's structured readiness context. Otherwise use `game-context --purpose readiness`.
 2. Confirm the foreground game, AppID, BuildID, profile/slot identity, and eligible adapter status. Use only installed, consented, Build-valid sensors; an experimental reader is not an available capability.
 3. Identify the source and freshness of each needed area independently: current live observation, saved checkpoint, or unknown. For checkpoint evidence, inspect `sourceFile`, `sourceSlotKind`, `sourceLastWriteTimeUtc`, state fingerprint, and warnings. `stateVerifiedAt` advancing while the fingerprint and source write time stay unchanged means the same checkpoint was re-read; it does not include unsaved play. A refreshed snapshot alone does not make checkpoint or historical facts live.
 4. If the player says he saved after known changes but the checkpoint did not advance, explain which fields are not captured. Continue independently verified areas without substituting stale values. When Play is unavailable, cached observations are historical, even if they were live when captured; confirm the minimum current information before giving action-sensitive advice.
-5. Run `game-navigator game-context --purpose readiness --pretty`.
+5. Inspect the returned context's policy and missing requirements; `readiness-context` puts these
+   under `game`. Do not make another context/frame request just to reconstruct the same observation.
+
+Only `frameCurrent=true` makes the returned local `frameArtifacts` usable as this observation's
+screen. Open the image before reading visible values. An image identifies only what is visible;
+it never proves off-screen equipment, hidden enemy state or that a saved checkpoint is active.
+Failed, missing, mismatched or aged frames remain unknown. This command does not replay offline
+images; offline preparation may instead use the explicitly stale `game-context` checkpoint.
 
 For checkpoint-only areas an autosave is sufficient; do not require a manual save. Eligible live facts can cover unsaved changes without a save. Use the product's reviewed sensor output, never ad-hoc memory inspection, save writes, or input automation.
 

@@ -99,6 +99,7 @@ the in-flight purchase locally, so a later conversation can resume it without `-
 "$GN" game-context --purpose equipment --pretty
 "$GN" game-context --purpose party --pretty
 "$GN" game-context --purpose readiness --pretty
+"$GN" readiness-context --pretty
 "$GN" game-context --purpose construction --pretty
 "$GN" game-context --purpose exploration --pretty
 "$GN" choice-context --spoilers light --pretty
@@ -108,6 +109,13 @@ the in-flight purchase locally, so a later conversation can resume it without `-
 objectives in the game's wording, bosses with spoiler-labelled hints). `progress` joins it with the save: the current
 objective when a saved quest ID is mapped, otherwise `unresolvedReason`; `progress.location.trust` says how far the
 saved place can be trusted; `progress.answerRules` are the answer rules for this context.
+
+For a current Boss/build question needing the screen, `readiness-context` returns `game` (the
+authorized readiness context), one `snapshotId`, observation time and capture status, plus local
+`frameArtifacts`. Use images only when `frameCurrent=true`; this preserves failed/missing/aged
+frame boundaries and never upgrades checkpoint facts to unsaved state. No offline image is replayed.
+It uses one frame capture after the ordinary identity/access preflight, not an independent second
+snapshot. Game/process/Build/device changes and expiry still reject before exposing a frame.
 
 A frame snapshot returns `framePath`: the local image to open (copied to `--frame-out` when given; a directory keeps
 the original file name). If no frame was captured, `framePath` is null and `frameUnavailableReason` says why.
