@@ -238,6 +238,14 @@ game knowledge and the current player's evidence, respecting spoilers; do not in
 locations, missable gates or progress counters from a description. Nearby suggestions in
 other conversations may use already available evidence, not silent extra achievement reads.
 
+When the question targets one already visible native achievement key, add
+`--achievement-key NATIVE_KEY` with `--goals`. It prioritizes that target within the same
+eight-text budget, without another endpoint or an extra read. `focusStatus=included`
+means its publisher text is present, not a verified route. `text-unavailable` preserves
+known progress but cannot supply that text. `unavailable` deliberately does not distinguish
+an unknown key from a hidden-unearned key and returns no unrelated default-window goals;
+do not guess a key, enumerate hidden targets or claim the returned window answers it.
+
 If synced state is unavailable and `steam.achievement-history` exists, omit `--synced`
 to request the bounded local-history fallback for the same explicit question:
 
