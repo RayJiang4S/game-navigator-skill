@@ -169,16 +169,16 @@ game, Build and purpose. A copied manifest, old installation row, or session tok
 
 ## Steam, performance and device state
 
-### Explicit achievement history
+### Explicit achievement progress and history
 
 For a player's achievement question, first pass the requested game's pack guard. Check
-`play-capabilities` for `steam.achievement-history`; an older or non-Windows Play may not
-offer it. Obtain the exact AppId and observed installed Build from the selected Play's
+`play-capabilities` for `steam.achievement-synced` or `steam.achievement-history`; an older or non-Windows Play may not
+offer them. Obtain the exact AppId and observed installed Build from the selected Play's
 `steam inventory` result, requiring one matching installed game. Do not guess a Build,
 reuse a different device's inventory or substitute Steam's schema revision for it.
 
 ```bash
-"$GN" steam achievements --app-id APPID --build OBSERVED_BUILD --confirm --pretty
+"$GN" steam achievements --app-id APPID --build OBSERVED_BUILD --confirm --synced --pretty
 ```
 
 The player's explicit achievement request authorizes this one local read; it does not
@@ -188,7 +188,30 @@ and refuses changed device/session/build or outdated/uninstalled packs. It does 
 claim trials or update packs automatically. Follow the ordinary guarded installation
 flow when required; never bypass the command by opening personal Steam cache files.
 
-`recordedUnlocks` contains only positive timestamped cache records. `remainingAchievementsKnown`
+Use `--synced` only when Play advertises it. Server supplies static definition keys and
+hidden flags after checking the installed pack; Play reads the verified local Steam
+owner's public Community achievement state directly, without an API key or a Server
+player-data proxy. Results remain transient. The returned state is account-level Steam
+progress, not the active character/save or unsaved gameplay. Capture time is the read
+time, not proof Steam has received the latest in-game unlock.
+
+Only `coversAllDefinitions=true` supports a total, remaining count or percentage for
+that response. Hidden unearned entries are withheld; do not infer their identities or
+conditions. Native keys are not names, routes or prerequisites: join advice only with
+reviewed game knowledge and the player's spoiler preference. A partial response's
+missing keys remain unknown. Network, private-profile, missing-definition or version
+failures mean unavailable, not zero earned. Steam's Community XML is deprecated, so
+availability is not promised. Do not weaken TLS, change profile privacy, retry endlessly
+or install an observer to force a result.
+
+If synced state is unavailable and `steam.achievement-history` exists, omit `--synced`
+to request the bounded local-history fallback for the same explicit question:
+
+```bash
+"$GN" steam achievements --app-id APPID --build OBSERVED_BUILD --confirm --pretty
+```
+
+In this fallback, `recordedUnlocks` contains only positive timestamped cache records. `remainingAchievementsKnown`
 and `liveGameplayState` remain false. Empty records are unknown, not zero earned or proof
 of completion; capture time describes this read, not a fresh Steam online sync. Installed
 Build does not prove cached definitions belong to that Build. Do not treat native keys as
