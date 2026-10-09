@@ -238,6 +238,13 @@ game knowledge and the current player's evidence, respecting spoilers; do not in
 locations, missable gates or progress counters from a description. Nearby suggestions in
 other conversations may use already available evidence, not silent extra achievement reads.
 
+If this exact installed pack advertises `achievement` in `supportedPurposes`, obtain its
+authorized conditions and checkpoint context with `game-context --purpose achievement --pretty`.
+Do not assume every pack publishes that purpose, retry an unpublished purpose as another game,
+or bypass access. Follow the returned rules: native action-goal comparison is separate from
+Steam earned state; missing counters stay unknown. Saved menu choices may precede equipping,
+so they cannot establish the current loadout. Do not ship/reconstruct a full achievement table.
+
 When the question targets one already visible native achievement key, add
 `--achievement-key NATIVE_KEY` with `--goals`. It prioritizes that target within the same
 eight-text budget, without another endpoint or an extra read. `focusStatus=included`
