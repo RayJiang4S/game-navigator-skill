@@ -285,6 +285,17 @@ or bypass access. Follow the returned rules: native action-goal comparison is se
 Steam earned state; missing counters stay unknown. Saved menu choices may precede equipping,
 so they cannot establish the current loadout. Do not ship/reconstruct a full achievement table.
 
+For Hades I's reviewed regular-keepsake upgrade goal, use the authorized policy's
+thresholds with `checkpoint-positive-keepsake-upgrade-counters` from the same checkpoint.
+For an observed positive counter, describe its saved eligible-encounter progress and
+the remaining count to the next reviewed threshold; it is not every room visited.
+Prefer a familiar observed keepsake close to its next upgrade when it also fits the
+player's run plan, without claiming it is currently equipped. Missing entries are
+unknown, not locked or zero; do not reveal undiscovered recipients to fill the list.
+These rules exclude assist traits. Meeting saved counter thresholds does not prove
+the native completion check ran or that Steam awarded the achievement; use explicit
+synced progress independently before calling the goal earned.
+
 When the question targets one already visible native achievement key, add
 `--achievement-key NATIVE_KEY` with `--goals`. It prioritizes that target within the same
 eight-text budget, without another endpoint or an extra read. `focusStatus=included`

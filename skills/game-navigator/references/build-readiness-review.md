@@ -36,6 +36,24 @@ Do not optimize every field independently. Prefer a coherent team plan, then ass
 
 ## Classify recommendations
 
+### When the player cannot beat a particular Boss
+
+Identify the opponent from the current visible encounter or the player's explicit name;
+an adjacent quest Boss, world-defeat flag or old battle is not the current opponent.
+Use that game's Build-valid reviewed definitions when available. Separate static attack
+rules from the phase, health and effects actually visible now; never predict exact damage
+or victory from a nominal level, saved equipment or an unreviewed difficulty assumption.
+
+Give usable encounter advice first, then a personalized preparation plan where evidence
+allows it: the dangerous move and response, this player's missing defensive/offensive
+coverage, and the smallest useful equipment/skill/recovery change. Explain an acquisition
+route only when its prerequisites and location are known; otherwise name the missing clue.
+Compare owned alternatives before suggesting grinding, purchases or scarce consumables.
+Missing parts of the full build review do not prevent advice supported independently by
+the visible encounter and reviewed mechanics. Mark the narrower scope instead of claiming
+a complete readiness assessment. Offer nearby achievement hints only from already
+authorized fresh progress and known conditions; do not start a background achievement read.
+
 Return one compact operation bundle in this order:
 
 - **Must do now**: empty slots, clearly dominated loadout, an unspent point that unlocks required coverage, or an acquisition that materially changes the current team plan.
