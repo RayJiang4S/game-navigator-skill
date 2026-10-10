@@ -83,6 +83,13 @@ contains the same capture's structured readiness context; `frameArtifacts` are l
 only with `frameCurrent=true`. Read the image before interpreting visible state. A fresh frame
 does not fill a missing structured capability or change a checkpoint's freshness/owner.
 
+For a construction or exploration question needing the screen, prefer `visual-context --purpose
+construction|exploration`: its `game` and local current frame share one observation. Open only when
+`frameCurrent=true`; absence or failure cannot replay a retained frame. A reviewed frame-only policy
+may require no entity definitions, but this proves only visible fields, not a learned-recipe catalog,
+complete inventory, reachable route or material availability in inaccessible storage. Keep any checkpoint
+facts labelled as saved and follow the remaining `missingCapabilities` and purpose-specific fallback.
+
 The response is usable as a complete structured answer only when the relevant state facts, reviewed entity definitions, and required capabilities are present. Read `decisionPolicy`: it is the Server-authorized, exact-Build and purpose-specific minimum state, entity type, comparison, objective, output, and fallback slice. Do not reconstruct a missing policy from remembered rules or stale local files. `missingCapabilities` includes required policy state that was not proved by the current facts/capabilities and `entity-type:*` entries for required Build-scoped definitions that were not returned; it is a bounded fallback plan, not an empty inventory. Use `--cached` only for an explicitly offline rules/history answer; preserve both `stateChangedAt` (the save content changed) and `stateVerifiedAt` (the same content was most recently rechecked), plus `stateStale`, in the answer.
 
 A save checkpoint is not live state, but it is not worthless either. When `progress.location.trust` is

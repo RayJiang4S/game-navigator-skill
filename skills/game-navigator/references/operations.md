@@ -102,6 +102,8 @@ the in-flight purchase locally, so a later conversation can resume it without `-
 "$GN" readiness-context --pretty
 "$GN" game-context --purpose construction --pretty
 "$GN" game-context --purpose exploration --pretty
+"$GN" visual-context --purpose construction --pretty
+"$GN" visual-context --purpose exploration --pretty
 "$GN" choice-context --spoilers light --pretty
 ```
 
@@ -116,6 +118,13 @@ authorized readiness context), one `snapshotId`, observation time and capture st
 frame boundaries and never upgrades checkpoint facts to unsaved state. No offline image is replayed.
 It uses one frame capture after the ordinary identity/access preflight, not an independent second
 snapshot. Game/process/Build/device changes and expiry still reject before exposing a frame.
+
+For construction or exploration needing a screen, `visual-context --purpose construction|exploration`
+has the same current-frame envelope and ordinary access/identity checks. Open `frameArtifacts` only
+when `frameCurrent=true`. Only that exact verified frame can satisfy `current-window-frame`;
+other missing state/entity requirements remain missing. A visible material quantity applies to
+this observation, not off-screen inventories, learned recipe completeness or future craftability.
+Do not use another purpose, replay retained images after failure or send frames to Server.
 
 A frame snapshot returns `framePath`: the local image to open (copied to `--frame-out` when given; a directory keeps
 the original file name). If no frame was captured, `framePath` is null and `frameUnavailableReason` says why.

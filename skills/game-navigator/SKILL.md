@@ -14,17 +14,22 @@ to capture or answer. The second command is needed only when a permitted questio
 1. `game-navigator journey --pretty` (add `--game-id GAME_ID` when the player named a game and Play is offline). One call returns account, device, current game and the full pack guard in `packGuard`; do not run `packs guard` again for the same question.
 2. To see the screen: `game-navigator snapshot --frame-out /tmp/gn-frame.png --pretty`, then open the image at the returned `framePath`. No `--help` or file search is needed.
 
-For a Boss or build question needing the current screen, use `game-navigator readiness-context --pretty`
-instead of a separate frame and readiness request. Open its local `frameArtifacts` only when
-`frameCurrent=true`; its `game` holds the same observation's structured context and Server policy.
-Add `game-navigator game-context --purpose <exploration|readiness|equipment|party|shop|skill-learning|construction> --pretty` when saved state or pack knowledge can answer without a frame.
-For a specific item or skill omitted from the knowledge subset, use `--focus-entity` only with its exact
-ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
-
 ## Talking to the player
 
 - Answer first from what you already have. When the save, the pack's route guide or one frame is enough, answer directly and name the basis in plain words (「根据上次存档…」「按攻略，这段接下来是…」). Ask the player to open a menu only when none of those can show the answer.
 - Never show the player Skill or reference file paths, links to them, command names, JSON field names, stage names or internal rule wording (for example "ask before running", `recognize-player`, `decisionPolicy`). Give the reason that matters to the player instead, such as「会占用一个试用名额，所以先问你」.
+
+## Choose the observation path
+
+For a Boss or build question needing the current screen, use `game-navigator readiness-context --pretty`
+instead of a separate frame and readiness request. Open its local `frameArtifacts` only when
+`frameCurrent=true`; its `game` holds the same observation's structured context and Server policy.
+Add `game-navigator game-context --purpose <exploration|readiness|equipment|party|shop|skill-learning|construction> --pretty` when saved state or pack knowledge can answer without a frame.
+For construction or exploration needing the current screen, use `game-navigator visual-context
+--purpose <construction|exploration> --pretty` instead of a separate frame and context request.
+Open its local `frameArtifacts` only when `frameCurrent=true`; keep saved facts and off-screen state separate.
+For a specific item or skill omitted from the knowledge subset, use `--focus-entity` only with its exact
+ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
 
 Treat the user's existing Agent as the conversation surface. Installing this Skill equips the Agent host, not one chat thread: any later conversation that can access the Skill may continue the journey. This Skill is the Navigator handbook. The Connector owns account, memory and live Play access. Play normally contacts Server only to create a short-lived pairing code. If Play cannot reach the public Server but Navigator can, use the reviewed LAN relay path: Navigator sends Play's registration envelope to Server, then pins Play's certificate before accepting the pair. Server never relays frames. Do not invent Coordinator/SSH/Mac mini steps.
 
@@ -99,6 +104,9 @@ access or installs all game packs. GitHub, the product page and copied Skills us
    A local directory is not a license. The Connector rechecks Server access before frame capture, game context, and choice context, so a removed, expired, copied, or previously installed pack remains inert. Do not preinstall the catalog or remove a pack unless the user explicitly asks.
 8. Choose one observation path for the question; do not precede a context command with another snapshot. For shop, skills, equipment, party, saved-loadout readiness, construction, or route/revisit planning, use `game-navigator game-context --purpose <shop|skill-learning|equipment|party|readiness|construction|exploration> --pretty`. For a visible dialogue or branch choice, load [story-choice-assistance.md](references/story-choice-assistance.md) and use `game-navigator choice-context`; this deliberately captures exactly one current frame and joins it with the latest structured state and prior confirmed choices. For other questions, use `snapshot --no-frame` when structured state can answer, or `snapshot --frame-out PATH` and open `framePath` when the screen is needed. If Play is sleeping, an offline checkpoint may be useful but must be labeled stale.
    For a current Boss/build question that needs a frame, use `readiness-context` as described above.
+   For construction or exploration that needs a frame, use `visual-context --purpose construction|exploration`.
+   It joins the same captured observation with the authorized policy; a visible recipe is not the whole
+   learned catalog, and inaccessible inventory is not available material. Answer only the visible gap or step.
    A missing frame does not justify another automatic capture loop or reuse of an older image.
    It also does not erase independently valid saved facts: label those and explain only the verified preparation.
    For an explicitly named Boss whose definition is missing, use the static-target lookup in
