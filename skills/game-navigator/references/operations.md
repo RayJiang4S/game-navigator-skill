@@ -184,9 +184,9 @@ return `available=true`, `refreshed=false`, `stateStale=true`: that is the last 
 current unsaved screen. The same Server request must match the exact installed Navigator instance, package version,
 game, Build and purpose. A copied manifest, old installation row, or session token alone cannot unlock game guidance.
 
-## Explicitly named Boss: static mechanics
+## Explicitly named Boss or wire: static mechanics
 
-After the game's pack guard passes, when the player explicitly names the Boss or the current
+After the game's pack guard passes, when the player explicitly names the Boss or wire, or the current
 authorized frame identifies it, and the context lacks its reviewed definition:
 
 ```bash
@@ -197,7 +197,7 @@ Use the exact game and installed Build already verified for this device; never g
 The name remains local. Navigator matches it against a bounded Server-authorized list of reviewed
 public compendium names, then requests only the matched canonical ID. It does not capture Play,
 upload the player's question, save the catalog locally, or enumerate arbitrary entity IDs.
-`matched=false` means no reviewed exact-name definition was returned, not that the enemy is absent.
+`matched=false` means no reviewed exact-name definition was returned, not that the enemy or wire is absent.
 Do not try guessed aliases or scan other builds. If the installed CLI lacks this command, use the
 normal update path, not a substitute endpoint or stale local catalog.
 
@@ -206,6 +206,13 @@ Keep it separate from `stateFacts`: it cannot establish the current enemy, healt
 damage, equipped build or ability to win. Combine only with independently valid current-frame or
 checkpoint evidence, retaining their freshness and the player's spoiler preference. Do not look up
 unasked future enemies or bypass an expired/revoked pack when the Server rejects the query.
+
+For Oxygen Not Included's four reviewed wire types, `ratedWatts` is the static watt rating,
+not this colony's effective circuit capacity, actual load or overload. The index and returned
+definition must agree on type as well as identity. Use the exact visible/public wire name;
+do not infer connected wires, transformers, available materials or a build order from the rating.
+If current circuit evidence is missing, compare ratings as general preparation and say what
+still needs checking, rather than claim the player's network is safe or overloaded.
 
 ## Steam, performance and device state
 

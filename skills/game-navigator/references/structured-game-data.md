@@ -137,11 +137,13 @@ subset. Never request an empty/full catalog, enumerate guessed IDs, or fall back
 Legacy source packs may still be imported by migration and test tooling, but they are not the commercial runtime
 payload.
 
-An explicitly named Boss has a separate bounded lookup (`target-knowledge`, see operations).
+An explicitly named Boss or reviewed wire type has a separate bounded lookup (`target-knowledge`, see operations).
 Its reviewed public-name index is authorized by the same installed pack and matched locally;
 only that match's canonical ID is sent back for a reviewed definition. The free-text name and
 question remain local. This is a static topic, not an observed player-state reference, and must
 never be added to `stateFacts` or used to claim a current opponent or current effective values.
+A static wire rating does not establish network membership, current load, available materials
+or effective circuit capacity; those require their own eligible player observations.
 
 ## Comparing skills or equipment
 
