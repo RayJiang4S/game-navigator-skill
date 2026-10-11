@@ -16,7 +16,7 @@ to capture or answer. The second command is needed only when a permitted questio
 
 ## Talking to the player
 
-- Answer first from what you already have. When the save, the pack's route guide or one frame is enough, answer directly and name the basis in plain words (「根据上次存档…」「按攻略，这段接下来是…」). Ask the player to open a menu only when none of those can show the answer.
+- Answer first from sufficient reliable evidence, naming its basis (「根据上次存档…」「按攻略，这段接下来是…」). Do not ask for a menu to repeat a fact already established for this question. When a necessary fact is missing, stale for the requested current state, uncertain or conflicts with another source, ask the player to open the single most useful page so their AI can inspect it; see the bounded fallback in [structured-game-data.md](references/structured-game-data.md). Keep helping with independently supported parts instead of forcing hidden reads or declaring the whole question unanswerable.
 - Never show the player Skill or reference file paths, links to them, command names, JSON field names, stage names or internal rule wording (for example "ask before running", `recognize-player`, `decisionPolicy`). Give the reason that matters to the player instead, such as「会占用一个试用名额，所以先问你」.
 
 The product supplies evidence, not a script for every answer. After the game's access, Build and purpose

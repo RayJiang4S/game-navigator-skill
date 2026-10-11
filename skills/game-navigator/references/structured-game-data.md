@@ -160,4 +160,10 @@ Separate exact fields from inference. A name or icon can suggest a hypothesis bu
 
 ## Bounded fallback
 
-When semantic parsing is unavailable, use one deliberate UI inspection rather than requiring a screenshot for every future acquisition. Prefer a menu that lists the full owned set and detail panel, enumerate a bounded batch, and record only confirmed normalized entity facts. Explain that this is a temporary compatibility fallback, not the intended steady state.
+After access, Build, purpose and permission checks pass, use the reliable evidence already returned. A missing or uncertain field is not a reason to force a hidden-state reader, install an observer or abandon independently supported advice.
+
+If a fact matters to the answer but is unavailable, stale for a current-state question, low-confidence or contradictory, ask the player to open one relevant in-game page, then inspect a new authorized current frame. For example: 「打开装备页，让我看看你现在穿的装备，再帮你比较。」 or 「打开技能面板，让我确认一下当前加点。」 Ask for the useful action, not for the player to verify internal JSON or type out the whole inventory. Do not interrupt combat merely to complete a checklist: offer supported tactics first and suggest the page when it is safe. Equipment, skills, map, quest, recipe or city-budget pages are examples, not mandatory steps for every game.
+
+Inspect what is actually visible, including the selected character, slot, filter and detail panel. A current visible value can correct a stale checkpoint for this answer, but does not rewrite that checkpoint's provenance or prove off-screen completeness. If a second page is genuinely needed, explain the remaining gap after the first inspection; never start an automatic capture loop or repeatedly request evidence already sufficient. If the player declines, the page is inaccessible or the new frame fails, continue the narrower supported help and state the uncertainty.
+
+For a recurring collection gap, prefer a page that exposes the relevant owned set and details, inspect only the bounded portion needed, and retain only confirmed normalized local facts with source and freshness. Do not turn temporary screen help into a screenshot archive, exhaustive menu tour or claim that semantic parsing is now available.
