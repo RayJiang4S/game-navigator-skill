@@ -92,6 +92,13 @@ facts labelled as saved and follow the remaining `missingCapabilities` and purpo
 
 The response is usable as a complete structured answer only when the relevant state facts, reviewed entity definitions, and required capabilities are present. Read `decisionPolicy`: it is the Server-authorized, exact-Build and purpose-specific minimum state, entity type, comparison, objective, output, and fallback slice. Do not reconstruct a missing policy from remembered rules or stale local files. `missingCapabilities` includes required policy state that was not proved by the current facts/capabilities and `entity-type:*` entries for required Build-scoped definitions that were not returned; it is a bounded fallback plan, not an empty inventory. Use `--cached` only for an explicitly offline rules/history answer; preserve both `stateChangedAt` (the save content changed) and `stateVerifiedAt` (the same content was most recently rechecked), plus `stateStale`, in the answer.
 
+Completeness is claim-specific: a missing inventory cannot invalidate an independently visible
+attack cue or a known saved level, but neither proves a full current build. The policy constrains
+evidence and product behavior; it does not replace the Agent's reasoning or require an exhaustive
+catalog. After successful access/Build/purpose checks, relevant public source research may supplement
+mechanics or context. Attribute it separately, check applicability and uncertainty, and do not add
+it to `stateFacts`, silently import it into reviewed catalogs, or use it to fabricate missing state.
+
 A save checkpoint is not live state, but it is not worthless either. When `progress.location.trust` is
 `trust-if-screen-matches` and the screen agrees (or the player just loaded that save), say the place as fact with
 「根据上次存档」. When a reviewed route guide is present, answer "what next" and boss questions from it instead of

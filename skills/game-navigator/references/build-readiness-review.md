@@ -50,7 +50,12 @@ coverage, and the smallest useful equipment/skill/recovery change. Explain an ac
 route only when its prerequisites and location are known; otherwise name the missing clue.
 Compare owned alternatives before suggesting grinding, purchases or scarce consumables.
 Missing parts of the full build review do not prevent advice supported independently by
-the visible encounter and reviewed mechanics. Mark the narrower scope instead of claiming
+the visible encounter and applicable mechanics. The player's Agent may corroborate missing
+public mechanics through its permitted research tools after the guard passes; keep those
+sources distinct from the product's reviewed definitions, check version/mode and cite them.
+Never derive private ownership, exact current health or an unseen phase from a public guide.
+This workflow does not require a prewritten answer or the maintainer to have defeated every Boss.
+Mark the narrower scope instead of claiming
 a complete readiness assessment. Offer nearby achievement hints only from already
 authorized fresh progress and known conditions; do not start a background achievement read.
 
