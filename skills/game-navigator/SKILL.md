@@ -39,6 +39,8 @@ For construction or exploration needing the current screen, use `game-navigator 
 Open its local `frameArtifacts` only when `frameCurrent=true`; keep saved facts and off-screen state separate.
 For a specific item or skill omitted from the knowledge subset, use `--focus-entity` only with its exact
 ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
+For an explicit Outer Wilds request to review already discovered clues, use the saved-known local path in
+[operations.md](references/operations.md); it does not reveal unknown clues or establish unsaved progress.
 
 Treat the user's existing Agent as the conversation surface. Installing this Skill equips the Agent host, not one chat thread: any later conversation that can access the Skill may continue the journey. This Skill is the Navigator handbook. The Connector owns account, memory and live Play access. Play normally contacts Server only to create a short-lived pairing code. If Play cannot reach the public Server but Navigator can, use the reviewed LAN relay path: Navigator sends Play's registration envelope to Server, then pins Play's certificate before accepting the pair. Server never relays frames. Do not invent Coordinator/SSH/Mac mini steps.
 
