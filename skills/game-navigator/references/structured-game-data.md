@@ -57,7 +57,12 @@ The local observer contract rejects stale (>30 seconds), wrong-Build, wrong-obse
 3. Join stable IDs only when the mapping is valid for the observed Build.
 4. Request a frame only for fields that remain visually necessary or for a bounded validation sample.
 
-For personalized decisions, use the Navigator's read-through context rather than independently querying each store:
+For personalized decisions, use the Navigator's read-through context rather than independently querying each store.
+Select only a purpose supported by this game's reviewed pack; the examples are not universally
+available. Oxygen Not Included duplicant preparation and skill allocation use `readiness`, not
+`skill-learning`. When current points or a selected duplicant must be checked, ask for their
+skill page and use one `readiness-context`; do not identify them from anonymous saved ordinals.
+This is the initial supported route, not permission to retry a denied purpose under another label.
 
 ```bash
 "$GN" game-context --purpose shop --pretty
@@ -115,6 +120,15 @@ Pixels remain appropriate for current dialogue, a highlighted choice, map geomet
 - Bind mappings to AppID, BuildID, platform, save schema version or signature, and DLC/mode where relevant.
 - Stop parsing at the first schema conflict. Do not silently carry offsets or property names across updates.
 - Never write a save, inspect process memory, bypass encryption, disable anti-cheat, or obtain a decryption key as part of the normal companion workflow. Process-memory research is a separate, disabled-by-default per-game engineering lane outside this user Skill; it must never be used as an automatic fallback.
+
+Oxygen Not Included's saved duplicant skill records contain checkpoint-local ordinals,
+native weighted experience and independent mastery/grant record counts. Join an ordinal
+to saved vitals only within the exact same checkpoint. Experience is not seconds, a level
+or available skill points; mastery may include grants and is not the count of paid-for
+skills. Missing fields stay unknown, while a returned zero is observed. These records can
+inform a saved-progress review, not identify a duplicant by name or prove active perks,
+morale requirements or an optimal respec. For a current skill decision, use the relevant
+duplicant/skill page when the necessary effective information is not otherwise available.
 
 ## Static entity catalogs
 

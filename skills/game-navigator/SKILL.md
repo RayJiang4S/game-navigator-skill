@@ -41,8 +41,11 @@ For a specific item or skill omitted from the knowledge subset, use `--focus-ent
 ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
 For an explicit Outer Wilds request to review already discovered clues, use the saved-known local path in
 [operations.md](references/operations.md); it does not reveal unknown clues or establish unsaved progress.
+For a question about a saved-known Witcher 3 alchemy or Stardew Valley crafting/cooking recipe, the same
+reference describes the bounded local definition commands. Use only keys already returned by authorized
+saved records. Source ingredients are not current inventory, effective costs or a promise the player can craft.
 
-Treat the user's existing Agent as the conversation surface. Installing this Skill equips the Agent host, not one chat thread: any later conversation that can access the Skill may continue the journey. This Skill is the Navigator handbook. The Connector owns account, memory and live Play access. Play normally contacts Server only to create a short-lived pairing code. If Play cannot reach the public Server but Navigator can, use the reviewed LAN relay path: Navigator sends Play's registration envelope to Server, then pins Play's certificate before accepting the pair. Server never relays frames. Do not invent Coordinator/SSH/Mac mini steps.
+Treat the user's existing Agent as the conversation surface. Installing this Skill equips the Agent host, not one chat thread: any later conversation that can access the Skill may continue the journey. This Skill is the Navigator handbook. The Connector owns account, memory and live Play access. Play contacts Server for registration/pairing and, for enhanced local definition reads, one-use authorization checks; it does not send game text or frames. If Play cannot reach the public Server but Navigator can, use the reviewed LAN relay path for pairing: Navigator sends Play's registration envelope to Server, then pins Play's certificate before accepting the pair. This pairing fallback does not bypass the separate enhanced-read authorization requirement. Do not invent Coordinator/SSH/Mac mini steps.
 
 ## Official ends
 
@@ -114,6 +117,12 @@ access or installs all game packs. GitHub, the product page and copied Skills us
    - `unsupported`: query the compatibility catalog. If the exact game is in `inDevelopmentGames`, say it is already being adapted; otherwise say the new-game wish has been added. In both cases automatically submit a `game-request` with the exact title, thank the player, tell them completion mail will arrive, and stop game-specific assistance until a reviewed pack exists. `no-game`: ask for the exact game or foreground it.
    A local directory is not a license. The Connector rechecks Server access before frame capture, game context, and choice context, so a removed, expired, copied, or previously installed pack remains inert. Do not preinstall the catalog or remove a pack unless the user explicitly asks.
 8. Choose one observation path for the question; do not precede a context command with another snapshot. For shop, skills, equipment, party, saved-loadout readiness, construction, or route/revisit planning, use `game-navigator game-context --purpose <shop|skill-learning|equipment|party|readiness|construction|exploration> --pretty`. For a visible dialogue or branch choice, load [story-choice-assistance.md](references/story-choice-assistance.md) and use `game-navigator choice-context`; this deliberately captures exactly one current frame and joins it with the latest structured state and prior confirmed choices. For other questions, use `snapshot --no-frame` when structured state can answer, or `snapshot --frame-out PATH` and open `framePath` when the screen is needed. If Play is sleeping, an offline checkpoint may be useful but must be labeled stale.
+   Choose only a purpose supported by the current game's reviewed pack; this list is not a promise
+   that every game supports every purpose. For Oxygen Not Included duplicant growth or skill
+   allocation, select `readiness` from the outset, not `skill-learning`. When current points or
+   the selected duplicant matter, ask for that duplicant's skill page and use `readiness-context`
+   once; anonymous saved experience cannot identify them or establish available points.
+   Never retry a denied purpose under another label to bypass a failed policy check.
    For a current Boss/build question that needs a frame, use `readiness-context` as described above.
    For construction or exploration that needs a frame, use `visual-context --purpose construction|exploration`.
    It joins the same captured observation with the authorized policy; a visible recipe is not the whole
