@@ -41,7 +41,7 @@ For a specific item or skill omitted from the knowledge subset, use `--focus-ent
 ID already present in verified `stateFacts`; never guess IDs or treat an unresolved focus as absence.
 For an explicit Outer Wilds request to review already discovered clues, use the saved-known local path in
 [operations.md](references/operations.md); it does not reveal unknown clues or establish unsaved progress.
-For a question about a saved-known Witcher 3 alchemy or Stardew Valley crafting/cooking recipe, the same
+For a question about a saved-known Witcher 3 alchemy/crafting or Stardew Valley crafting/cooking recipe, the same
 reference describes the bounded local definition commands. Use only keys already returned by authorized
 saved records. Source ingredients are not current inventory, effective costs or a promise the player can craft.
 

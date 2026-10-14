@@ -264,8 +264,15 @@ by that same enhanced command. Ordinary snapshots use shorter checkpoint IDs: do
 pad, guess or substitute those. If a bound checkpoint changed, preserve the rejection and
 recheck the saved evidence; never silently remove the binding to retry a stale request.
 
+For Witcher 3 crafting, `commands` must include `witcher3.known-crafting`. If it is absent
+or the Connector returns `play-update-required`, explain that this particular read needs the
+normal Play update and ask for confirmation before updating. Keep other supported help
+available; do not bypass the command, reinstall a pack as a substitute, or call missing
+recipe results an empty learned list. A failed capability/network check is not proof of an old version.
+
 ```bash
 "$GN" witcher3 known-alchemy --build OBSERVED_BUILD --reference "SAVED_KEY" --confirm --pretty
+"$GN" witcher3 known-crafting --build OBSERVED_BUILD --reference "SAVED_SCHEMATIC_KEY" --confirm --pretty
 "$GN" stardew-valley known-recipes --build OBSERVED_BUILD --family crafting --reference "SAVED_KEY" --confirm --pretty
 "$GN" stardew-valley known-recipes --build OBSERVED_BUILD --family cooking --reference "SAVED_KEY" --confirm --pretty
 ```
@@ -277,9 +284,15 @@ Server receives the request digest, not keys, recipe text or saves. Pairing/auth
 need the normal login, access or pairing route; never fall back to directly opening private files.
 The result stays transient on Play/Navigator, outside Server telemetry and current-state snapshots.
 
-- **Witcher 3:** a positive saved alchemy key can resolve to original-base ingredients, quantities,
+- **Witcher 3 alchemy:** a positive saved alchemy key can resolve to original-base ingredients, quantities,
   output and available English source names. This is not the active recipe variant, current UI
   language, held materials or effective craftability. Missing recipe labels stay missing.
+- **Witcher 3 crafting:** use a positive saved schematic key, not an alchemy key or guessed item name.
+  The command returns only source relationships whose original-base and NG+ output, materials,
+  quantities and English names agree. `source-variant-unresolved` means those source families
+  disagree, not that the schematic is unlearned; do not choose a family or infer the active recipe.
+  `explicitSourceQuantity=null` means no explicit source output quantity was established, never1.
+  Item source names are not a schematic label, current UI language, effective cost or craftability.
 - **Stardew Valley:** a coherent saved host world/preview pair can resolve positive learned crafting
   or cooking keys to base ingredients and output. A recorded zero counter can still mean learned;
   `recipesCooked` history is not learned-key membership. Ingredient selectors can be categories or
