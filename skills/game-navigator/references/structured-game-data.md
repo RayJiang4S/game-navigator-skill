@@ -23,7 +23,7 @@ A file, GVAS signature, table name, asset path, or community ID does not prove a
 
 1. Start with the no-frame snapshot and whether this AppID and Build has a reviewed `event-live` adapter.
 2. `explicit-opt-in-required`, `observer-not-running`, `observer-envelope-rejected`, and `build-mismatch` are real gaps. Do not create a consent file, install a loader, or weaken the check to make the capability green.
-3. A reviewed observer envelope is only a receiving contract. It is usable after this game has a separately reviewed, user-enabled observer that emits allowlisted facts. A reviewed exporter (`reviewed-opt-in-mod-exporter`) uses freshness `live-mod-unsaved`: say "实时（未存档，来自 Mod）". `exporter-version-mismatch` means the installed exporter is not the reviewed version (`live-mod status` or reinstall). `build-mismatch` after a game update pauses the exporter until that Build is reviewed. Fall back to the checkpoint and the current frame, labeled as such. Some exporters (OCTOPATH TRAVELER 0) reuse save fact keys such as `party.active-character-ids` or `inventory.items.<id>.quantity`. For the same key, the live value replaces the checkpoint value. `live.mode=title` is the title screen: no party yet, so do not describe one. `unavailable` means the game data was not read: use the last save and the frame.
+3. A reviewed observer envelope is only a receiving contract. It is usable after this game has a separately reviewed, user-enabled observer that emits allowlisted facts. A reviewed exporter (`reviewed-opt-in-mod-exporter`) uses freshness `live-mod-unsaved`: say "实时（未存档，来自 Mod）". `exporter-version-mismatch` means the installed exporter is not the reviewed version (`live-mod status` or reinstall). `build-mismatch` after a game update pauses the exporter until that Build is reviewed. Fall back to the checkpoint and the current frame, labeled as such. Some exporters reuse save fact keys such as `party.active-character-ids` or `inventory.items.<id>.quantity`. For the same key, the live value replaces the checkpoint value. `live.mode=title` is the title screen: no party yet, so do not describe one. `unavailable` means the game data was not read: use the last save and the frame.
 4. Do not install a Mod, DLL loader, runtime hook, script extension, or memory reader because the player asked to “look at the game”. Classify it as `observer`, `experience`, `content`, `balance`, or `cheat`, then get per-game authorization after source, exact version, benefit, reversibility, update and save risk, conflicts, multiplayer and anti-cheat impact, and license. A loader without a reviewed observer that emits useful allowlisted facts is not an enhancement. Show the baseline-versus-enhanced delta and offer one reversible per-game choice. Steam Workshop is only a channel where that game integrates it. Do not treat in-game catalogs, mod.io, Nexus, Thunderstore, GitHub loaders, and Workshop as one ecosystem.
 5. With no observer, one current frame covers the visible dialogue, choice, shop, HUD, map, or menu. Off-screen inventory, variables, and NPC flags stay unknown. Do not fill them from an older checkpoint.
 6. Games with anti-cheat stay visual and checkpoint-only unless the vendor provides an explicitly supported API. A “read-only” implementation is not automatically safe.
@@ -34,8 +34,8 @@ The local observer contract rejects stale (over 30 seconds), wrong-Build, wrong-
 
 Take the no-frame snapshot and read adapter status, version, BuildID, warnings, and capabilities. Join stable IDs only when the mapping is valid for the observed Build. Request a frame only for fields that are still visual.
 
-Select only a purpose this pack supports. Oxygen Not Included duplicant preparation and skill allocation use `readiness`, not
-`skill-learning`. When current points or a selected duplicant must be checked, ask for their
+Select only a purpose this pack supports. When a reviewed pack tracks worker preparation and skill allocation, use `readiness`, not
+`skill-learning`. When current points or a selected worker must be checked, ask for their
 skill page and use one `readiness-context`; do not identify them from anonymous saved ordinals.
 This is the initial supported route, not permission to retry a denied purpose under another label.
 
@@ -63,14 +63,14 @@ When `progress.location.trust` is `trust-if-screen-matches` and the screen agree
 
 Open live files read-only, with sharing where the platform allows. Return minimized fields, provenance, observation time, active-slot confidence, and parse warnings. Never retain raw saves in snapshots. The newest file is not automatically the active slot. Distinguish autosave, manual slots, system data, and Steam Cloud metadata. Stop at the first schema conflict. Never write a save, inspect process memory, bypass encryption, disable anti-cheat, or obtain a decryption key as part of the normal companion workflow. Process-memory research is a separate, disabled-by-default per-game engineering lane outside this user Skill; it must never be used as an automatic fallback.
 
-Oxygen Not Included's saved duplicant skill records contain checkpoint-local ordinals,
+A reviewed colony pack's saved worker skill records contain checkpoint-local ordinals,
 native weighted experience and independent mastery/grant record counts. Join an ordinal
 to saved vitals only within the exact same checkpoint. Experience is not seconds, a level
 or available skill points; mastery may include grants and is not the count of paid-for
 skills. Missing fields stay unknown, while a returned zero is observed. These records can
-inform a saved-progress review, not identify a duplicant by name or prove active perks,
+inform a saved-progress review, not identify a worker by name or prove active perks,
 morale requirements or an optimal respec. For a current skill decision, use the relevant
-duplicant/skill page when the necessary effective information is not otherwise available.
+worker skill page when the necessary effective information is not otherwise available.
 
 ## Definitions the Server returns
 

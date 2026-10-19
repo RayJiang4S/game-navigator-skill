@@ -64,36 +64,13 @@ These are examples, not promises for every game. Available information varies by
 some state comes from the current screen, some from saves, and some from optional reviewed observers.
 [Check each game's current capabilities](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=capabilities-en).
 
-### The Witcher 3 Remastered
+### Ask about the screen in front of you
 
-Plan around the new skill tree and mutations, compare the equipment on screen, and prepare alchemy from
-the recipe and ingredient view. Reviewed saves also supply your saved level, available skill points, and
-experience. You can ask about a visible screen before saving; off-screen equipment, quest variables, and
-unsaved internal changes are not fully readable. No save editor or research toolkit is installed.
-The [product page](https://gamenavigator.raycraftlab.com/?lang=en&utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=witcher-remastered-en)
+Plan around the skill, equipment, and recipe screens the player can open. A reviewed save can supply the saved level, available skill points, and experience. A visible screen can be discussed before saving. Off-screen equipment, quest variables, and unsaved internal changes are not fully readable. No save editor or research toolkit is installed.
+The [product page](https://gamenavigator.raycraftlab.com/?utm_source=github&utm_medium=repository&utm_campaign=skill-launch&utm_content=capabilities-en)
 is the source of current per-game support, including version-specific limits.
 
-#### Try a concrete equipment question
-
-Our October 5 check used the owner's existing save in Remastered v5.00c, Steam Build 25646871.
-Play captured two silver-sword tooltips with damage, passive effects, required level, condition and comparison
-indicators. The new skill-tree screen showed the reset abilities; no skill points were spent. The reviewed
-checkpoint reader returned **saved level 100, 108 available skill points and 0 available experience**.
-These are verified observations. The question and suggested response below illustrate how to use them;
-they are not a recorded AI conversation or a measured gameplay outcome.
-
-> “The update reset my skills. Which of these two silver swords should I keep for my build?
-> Compare what is visible, explain the tradeoffs, and keep story spoilers out.”
-
-A useful first response would ask you to show each tooltip and the current skill/mutation screen, then
-compare the visible damage and passive effects against the play style you choose. It should label the
-100/108/0 values as **saved**, ask about current learned/equipped skills if they are missing, and explain
-what each choice depends on before suggesting a change. A bigger damage number alone cannot settle a
-build comparison when its passive effects and your current skills are unknown.
-
-Keep your current loadout while inspecting: hover/navigate rather than equipping an item to view it.
-Start with this bounded comparison, then ask about preparation for a named boss once the relevant
-equipment, skills and encounter are known. You choose and perform every game action.
+A useful equipment question compares what is on screen, labels saved values as saved, and asks for the current skill screen when it is missing. A bigger damage number alone cannot settle a comparison when its passive effects and current skills are unknown. Keep the current loadout while inspecting. You choose and perform every game action.
 
 ## Skill, trial and paid access
 
