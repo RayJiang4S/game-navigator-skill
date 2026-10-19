@@ -20,12 +20,7 @@ A manifest can prove that an asset or table exists but cannot prove its rows, or
 
 ## Catalog ownership
 
-- Keep this reusable workflow in the total Skill.
-- Keep the static, build-specific option catalog in the game's Game Pack.
-- Keep live observations, the finalized character, and confirmed reasons in SQLite.
-- Generate an Obsidian view only as a projection; do not make it a second source of truth.
-
-For each catalog entry, retain the game version and BuildID, category, dependent physique/body type, stable game ID when available, UI order, visible label, appearance or audio description, unlock conditions, gameplay effects, evidence reference, observation time, and confidence. Never fill a missing field by analogy with a sequel, wiki, mod, or nearby asset name.
+The option catalog lives in the game pack, not in this Skill. Live observations and the confirmed character stay in SQLite. Never fill a missing field by analogy with a sequel, wiki, mod, or nearby asset name. A catalog entry needs the game version and BuildID, category, dependent body type, stable ID when available, UI order, visible label, appearance or audio description, unlock conditions, gameplay effects, evidence, observation time, and confidence.
 
 ## Enumerate safely
 
@@ -40,9 +35,7 @@ For each catalog entry, retain the game version and BuildID, category, dependent
 
 ## Recommend a character
 
-Start with a direction such as self-avatar, anime-inspired homage, or original character. Ask only for choices that materially change the concept. Then provide a complete selection bundle with exact category names and option positions, plus one short reason for the visual coherence.
-
-Keep inspiration distinct from imitation: translate qualities such as silver hair, restrained palette, sharp eyes, or calm voice into the options the game actually offers. Do not claim that a preset reproduces a named character unless the observed result supports it.
+Ask only for choices that materially change the concept, then give a complete selection bundle with exact category names, option positions, and one short reason. Translate a requested quality into options the game actually offers. Do not claim that a preset reproduces a named character unless the observed result supports it.
 
 Do not persist a proposed look as final. After the player confirms the completed character, record the exact selections and rationale as one decision linked to the current game/profile and catalog version.
 

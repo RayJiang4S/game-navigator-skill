@@ -47,8 +47,10 @@ npx skills add RayJiang4S/game-navigator-skill --skill game-navigator
 
 </details>
 
-登录后，告诉领航师游戏是在这台 Windows 电脑上，还是另一台 Windows 设备上。
-另一台设备会使用可点击的安装器和短配对码，通常两台设备需要在同一家庭网络。
+登录后，告诉领航师游戏在这台电脑，还是在另一台 Windows。
+这台电脑会下载并安装游戏端；装好后通常会自动连上，你不需要抄配对码。
+如果没有自动连上，或者游戏在另一台 Windows，把安装窗口或托盘里的 6 位数字发回对话。
+你同意这款游戏领航包的 5 天试用之后，才会下载这一款领航包。然后打开游戏，直接开口。
 AI 工具所在的领航端支持 Windows、macOS 和受支持的 Linux；游戏端目前运行于 Windows。
 
 ## 直接这样问

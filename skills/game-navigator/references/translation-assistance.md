@@ -23,12 +23,7 @@ If the handheld is unavailable, capture fails, or the text has disappeared, acce
 
 ## Answer modes
 
-- **Quick translation** — Natural wording in the player's preferred language; include the source text only where it helps locate or verify the line.
-- **Translate and explain** — Translation, the meaning in this game's context, and any immediate mechanic or action consequence.
-- **Choices without spoilers** — Translate each option and its tone or intent. Do not reveal hidden outcomes unless the player asks.
-- **Term help** — Give pronunciation when useful, ordinary meaning, in-game meaning, gameplay effect, and one short memory cue.
-
-If the player points to “the last word,” “the last two words,” or another narrow phrase, answer that phrase first, then provide one natural full-sentence translation. Do not bury the requested vocabulary inside a long plot summary.
+Lead with natural wording in the player's language. Add in-game meaning and the immediate consequence only when they asked to understand it. For choices, translate each option's tone and do not reveal hidden outcomes unless they ask. For one term, give pronunciation when useful, ordinary meaning, in-game meaning, effect, and one memory cue. If they point at a short phrase, answer that phrase first, then one full sentence. Do not bury it in a plot summary.
 
 Preserve names, stats, key labels, resource names, and official localized terminology when known. Prefer natural localized wording over word-for-word output, but do not silently change numbers, negation, conditions, durations, or probability language.
 
@@ -50,4 +45,4 @@ The glossary supports `term`, `phrase`, `ui-label`, and `mechanic`. Treat a stor
 
 ## Deferred modes
 
-Do not imply phase one provides a handheld shortcut, overlay, speech output, real-time subtitles, background OCR, or continuous screen monitoring. Those require a separate privacy, latency, power, and interaction design and remain deferred.
+Do not imply a handheld shortcut, overlay, speech output, real-time subtitles, background OCR, or continuous screen monitoring. Those remain deferred.

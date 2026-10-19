@@ -47,9 +47,11 @@ Node.js is needed for this optional CLI route, not for the ordinary setup above.
 
 </details>
 
-Sign in, then tell Navigator whether the game runs on this Windows PC or another Windows device.
-For a separate device, it guides you to a clickable installer and a short pairing code. Both devices normally
-share a home network. Your AI tool can run on Windows, macOS or supported Linux systems; Play runs on Windows.
+Sign in, then say whether the game is on this computer or another Windows PC.
+This computer downloads and installs Play, and it usually connects by itself with no code to copy.
+If it does not connect, or the game is on another Windows PC, send the 6 digits from the install window or the tray.
+The navigation pack downloads only after you agree to its five-day trial. Then open the game and ask.
+Your AI tool can run on Windows, macOS or supported Linux systems; Play runs on Windows.
 
 ## Ask naturally
 

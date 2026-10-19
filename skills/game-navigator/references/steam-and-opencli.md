@@ -40,15 +40,11 @@ are bounded but state-changing and therefore require the user's exact confirmati
 "$GN" steam launch --app-id APPID --confirm --pretty
 ```
 
-After one launch request, use `"$GN" steam launch-status --app-id APPID --pretty` until it reports
-`game-process-confirmed`, `not-running`, or a visible decision is needed. Do not resend a launch because a large
-game takes longer than the initial bounded wait. The four-minute duplicate guard can be overridden with `--retry`
-only after a visible failed attempt and fresh user confirmation.
-When `requiresUserAttention=true`, stop polling and inspect the single visible Steam prompt when an approved GUI
-capability is available. Do not translate `steamTask` into a specific agreement, cloud conflict, or launch option
-unless the visible UI confirms it. With explicit delegation in the current conversation, the Agent may dismiss only
-a fully observed informational prompt that carries no agreement, permission, save, account, purchase, gameplay, or
-preference decision; re-observe immediately. All other prompts stay with the player. Play itself remains sensor-only.
+After one launch request, poll `"$GN" steam launch-status --app-id APPID --pretty` until
+`game-process-confirmed`, `not-running`, or a visible decision. Do not resend a launch because the game is large.
+`--retry` overrides the four-minute guard only after a visible failure and fresh confirmation. Stop when
+`requiresUserAttention=true`. Do not read `steamTask` as an agreement, cloud conflict, or launch option unless the
+visible UI says so. Dismiss only the interstitial SKILL.md allows, then re-observe. Play stays sensor-only.
 
 Steam must open in Big Picture / Gamepad UI on a handheld. Never silently add `--confirm`; never buy,
 refund, uninstall, trade, post, change a wishlist or handle Steam Guard.

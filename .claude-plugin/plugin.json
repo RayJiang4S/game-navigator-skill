@@ -1,0 +1,12 @@
+{
+  "name": "game-navigator",
+  "displayName": "Game Navigator",
+  "description": "Game-aware guidance for routes, equipment, skills, and story choices through a local connector. The Skill is MIT licensed; the companion service requires sign-in and offers trials and paid access.",
+  "version": "1.0.0-beta.389",
+  "author": {
+    "name": "Ray Jiang"
+  },
+  "homepage": "https://gamenavigator.raycraftlab.com",
+  "repository": "https://github.com/RayJiang4S/game-navigator-skill",
+  "license": "MIT"
+}

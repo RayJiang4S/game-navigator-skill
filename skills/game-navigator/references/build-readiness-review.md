@@ -54,7 +54,6 @@ the visible encounter and applicable mechanics. The player's Agent may corrobora
 public mechanics through its permitted research tools after the guard passes; keep those
 sources distinct from the product's reviewed definitions, check version/mode and cite them.
 Never derive private ownership, exact current health or an unseen phase from a public guide.
-This workflow does not require a prewritten answer or the maintainer to have defeated every Boss.
 Mark the narrower scope instead of claiming
 a complete readiness assessment. Offer nearby achievement hints only from already
 authorized fresh progress and known conditions; do not start a background achievement read.
@@ -71,6 +70,6 @@ For each change, name the character, slot/menu, current value, target value, rea
 
 ## Bounded fallback and verification
 
-Use at most one deliberate overview screen per missing area, such as the full equipment, skill, roster, or shop list. Do not ask the player to highlight every item. Record reviewed reusable definitions in the Game Pack; keep transient ownership and loadouts in SQLite only.
+Use at most one deliberate overview screen per missing area, such as the full equipment, skill, roster, or shop list. Do not ask the player to highlight every item. Keep transient ownership and loadouts in SQLite only.
 
 After the player applies changes, rerun `readiness` and verify the resulting state diff from eligible current evidence. Ask for one normal save when convenient only for changes that the available reader observes through checkpoints. Do not claim a selection is applied merely because it was recommended, briefly highlighted, or remains in an offline cache. Keep unverified areas unknown. The review does not imply that story progression must immediately follow.

@@ -1,0 +1,14 @@
+{
+  "name": "game-navigator-skill",
+  "description": "Game-aware guidance for routes, equipment, skills, and story choices through a local connector. The Skill is MIT licensed; the companion service requires sign-in and offers trials and paid access.",
+  "owner": {
+    "name": "Ray Jiang"
+  },
+  "plugins": [
+    {
+      "name": "game-navigator",
+      "source": ".",
+      "description": "Game-aware guidance for routes, equipment, skills, and story choices through a local connector. The Skill is MIT licensed; the companion service requires sign-in and offers trials and paid access."
+    }
+  ]
+}

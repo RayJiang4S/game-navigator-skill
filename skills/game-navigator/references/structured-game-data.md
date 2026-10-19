@@ -1,65 +1,40 @@
 # Structured game data
 
-Use this workflow for skills, equipment, inventory, party, stats, quests, location, save progress, shops, or any request that will recur as the player's state grows. The goal is semantic state, not a screenshot archive.
+Use this for skills, equipment, inventory, party, stats, quests, location, saves, shops, or any request that will recur. The goal is semantic state, not a screenshot archive.
 
-## Separate state from definitions
-
-Treat these as two independent joins:
-
-- **Player state**: what the player currently owns, learned, equipped, selected, completed, can afford, or has available in the active save.
-- **Entity catalog**: what a skill, item, weapon, armor, quest, NPC, location, status, or currency means in the current Build.
-
-A save may expose only stable IDs and quantities. A shipped data table may expose definitions but not the player's current ownership. Do not answer a personalized comparison until the required state and definitions have both been resolved or their gaps are stated.
+Player state (owned, learned, equipped, selected, completed, affordable, available) and the entity catalog (what an ID means on this Build) are separate joins. Do not give a personalized comparison until both are resolved or the gaps are named. A save may expose only IDs and quantities. A data table may expose definitions and not ownership.
 
 ## Evidence ladder
 
 Use the smallest sufficient layer:
 
 1. Reviewed game API, semantic log, or supported modding interface.
-2. Build-validated read-only save parser for current state.
-3. Build-validated shipped static catalog for definitions.
+2. Build-validated read-only save parser.
+3. Build-validated shipped catalog.
 4. Current in-game help, inventory, equipment, skill, quest, or map UI.
 5. Official build-matched documentation.
-6. Community databases or guides as candidate evidence requiring corroboration.
+6. Community databases or guides, as candidates that need corroboration.
 
-For product-facing support status, query `game-navigator compatibility --pretty`. The Server's public compatibility catalog is the single source used by both the 产品页 and Navigator. Each game has two different profiles:
+`game-navigator compatibility --pretty` is the same catalog as the 产品页. Read `control` (`尚未接入 / 能确认 / 看得见 / 读得懂 / 跟得上`) and `guidance` (`可直接领航 / 打开现场即可 / 存档后更完整 / 继续适配中 / 本作不涉及`) separately. Do not average them. A frame can guide a choice without being a live event. A checkpoint cannot prove unsaved state.
 
-- `control`: evidence depth in shared directions such as scene, journey, build, economy, encounter and performance. Its levels are `尚未接入 / 能确认 / 看得见 / 读得懂 / 跟得上`.
-- `guidance`: what help is presently deliverable, marked `可直接领航 / 打开现场即可 / 存档后更完整 / 继续适配中 / 本作不涉及`.
-
-Do not average dimensions into a single score or infer that guidance is impossible merely because a source is visual. A current-frame choice can be useful guidance without being a live structured event. Conversely, a structured checkpoint cannot prove the current unsaved state. Promote only the affected dimension after Build-scoped validation.
-
-Do not treat file existence, a GVAS signature, a table name, an asset path, or a community item ID as proof of a field's meaning. Preserve the adapter's capability flags. `false` or absent means unknown, not empty.
-
-Also inspect each adapter's `sourcePolicy`: `kind`, `freshness`, `riskTier`, Build scope, continuous-observation flag, and explicit-opt-in requirement. An event source may describe unsaved current state; a checkpoint or save source cannot. Never silently present checkpoint facts as live merely because the game is still open.
+A file, GVAS signature, table name, asset path, or community ID does not prove a field's meaning. `false` or absent means unknown, not empty. Read `sourcePolicy`: `kind`, `freshness`, `riskTier`, Build scope, continuous observation, and explicit opt-in. An event source may be unsaved current state. A checkpoint cannot. Do not present checkpoint facts as live because the game is open.
 
 ## Unsaved live state
 
-Treat “the game is open” and “all internal state is observable” as separate claims:
+1. Start with the no-frame snapshot and whether this AppID and Build has a reviewed `event-live` adapter.
+2. `explicit-opt-in-required`, `observer-not-running`, `observer-envelope-rejected`, and `build-mismatch` are real gaps. Do not create a consent file, install a loader, or weaken the check to make the capability green.
+3. A reviewed observer envelope is only a receiving contract. It is usable after this game has a separately reviewed, user-enabled observer that emits allowlisted facts. A reviewed exporter (`reviewed-opt-in-mod-exporter`) uses freshness `live-mod-unsaved`: say "实时（未存档，来自 Mod）". `exporter-version-mismatch` means the installed exporter is not the reviewed version (`live-mod status` or reinstall). `build-mismatch` after a game update pauses the exporter until that Build is reviewed. Fall back to the checkpoint and the current frame, labeled as such. Some exporters (OCTOPATH TRAVELER 0) reuse save fact keys such as `party.active-character-ids` or `inventory.items.<id>.quantity`. For the same key, the live value replaces the checkpoint value. `live.mode=title` is the title screen: no party yet, so do not describe one. `unavailable` means the game data was not read: use the last save and the frame.
+4. Do not install a Mod, DLL loader, runtime hook, script extension, or memory reader because the player asked to “look at the game”. Classify it as `observer`, `experience`, `content`, `balance`, or `cheat`, then get per-game authorization after source, exact version, benefit, reversibility, update and save risk, conflicts, multiplayer and anti-cheat impact, and license. A loader without a reviewed observer that emits useful allowlisted facts is not an enhancement. Show the baseline-versus-enhanced delta and offer one reversible per-game choice. Steam Workshop is only a channel where that game integrates it. Do not treat in-game catalogs, mod.io, Nexus, Thunderstore, GitHub loaders, and Workshop as one ecosystem.
+5. With no observer, one current frame covers the visible dialogue, choice, shop, HUD, map, or menu. Off-screen inventory, variables, and NPC flags stay unknown. Do not fill them from an older checkpoint.
+6. Games with anti-cheat stay visual and checkpoint-only unless the vendor provides an explicitly supported API. A “read-only” implementation is not automatically safe.
 
-1. First use the no-frame snapshot and inspect whether the exact AppID/Build has a reviewed `event-live` adapter.
-2. `explicit-opt-in-required`, `observer-not-running`, `observer-envelope-rejected`, and `build-mismatch` are genuine missing states. Do not create consent files, install a loader, or weaken the check merely to make the capability green.
-3. A reviewed observer envelope is only a receiving contract. It becomes usable only after this exact game has a separately reviewed, user-enabled observer that emits allowlisted facts.
-   A reviewed exporter mod (source kind `reviewed-opt-in-mod-exporter`) reports facts with freshness `live-mod-unsaved`: say "实时（未存档，来自 Mod）". Its extra failure states are `exporter-version-mismatch` (the installed exporter is not the reviewed version; suggest `live-mod status`/reinstall) and `build-mismatch` after a game update (the exporter pauses until the new Build is reviewed). Fall back to checkpoints and the current frame, labelled as such.
-   Some exporters (OCTOPATH TRAVELER 0) use the same fact keys as the save file, for example `party.active-character-ids` or `inventory.items.<id>.quantity`. For the same key, the live value replaces the checkpoint value. `live.mode` tells you where the player is: `title` means the title screen (no party yet; do not describe a party), and `unavailable` means the game data could not be read (use the last save and the frame).
-4. Never install a Mod, DLL loader, runtime hook, script extension, or memory reader from a broad request to “look at the game”. First classify it as `observer`, `experience`, `content`, `balance`, or `cheat`, then obtain per-game authorization after explaining source, exact version, benefit, reversibility, update and save risk, conflicts, multiplayer/anti-cheat impact, and commercial-license status.
-   A loader without a reviewed observer that produces useful allowlisted facts is not an enhancement and should not be installed. When an observer is ready, show the exact baseline-versus-enhanced capability delta and offer a reversible per-game choice; never present a bundle-wide “install all Mods” action.
-   Steam Workshop is only one possible distribution channel and exists only where the game integrates it. Do not describe official in-game catalogs, mod.io, Nexus, Thunderstore, GitHub loaders, and Steam Workshop as one interchangeable ecosystem.
-5. When no observer is available, request one current frame for the immediate dialogue, choice, shop page, HUD, map or menu. State that off-screen inventory, variables and NPC flags remain unknown; do not fill them from an older checkpoint.
-6. Games with anti-cheat remain visual/checkpoint-only unless the vendor provides an explicitly supported API. A “read-only” implementation is not automatically safe.
+The local observer contract rejects stale (over 30 seconds), wrong-Build, wrong-observer, oversized, duplicate, null, or unreviewed facts. Do not edit its local JSON as a workaround.
 
-The local observer contract rejects stale (>30 seconds), wrong-Build, wrong-observer, oversized, duplicate, null, or unreviewed facts. Do not advise users to edit its local JSON as a workaround.
+## Before a frame
 
-## Before requesting a frame
+Take the no-frame snapshot and read adapter status, version, BuildID, warnings, and capabilities. Join stable IDs only when the mapping is valid for the observed Build. Request a frame only for fields that are still visual.
 
-1. Take the no-frame identity snapshot and inspect every matching adapter's status, version, BuildID, warnings, and capability block.
-2. Query the Game Pack for a reviewed entity catalog and source policy.
-3. Join stable IDs only when the mapping is valid for the observed Build.
-4. Request a frame only for fields that remain visually necessary or for a bounded validation sample.
-
-For personalized decisions, use the Navigator's read-through context rather than independently querying each store.
-Select only a purpose supported by this game's reviewed pack; the examples are not universally
-available. Oxygen Not Included duplicant preparation and skill allocation use `readiness`, not
+Select only a purpose this pack supports. Oxygen Not Included duplicant preparation and skill allocation use `readiness`, not
 `skill-learning`. When current points or a selected duplicant must be checked, ask for their
 skill page and use one `readiness-context`; do not identify them from anonymous saved ordinals.
 This is the initial supported route, not permission to retry a denied purpose under another label.
@@ -74,52 +49,19 @@ This is the initial supported route, not permission to retry a denied purpose un
 "$GN" game-context --purpose exploration --pretty
 ```
 
-When a question targets one exact entity ID already present in returned verified `stateFacts`,
-add `--focus-entity OBSERVED_ID` to prioritize it within the same 128-reference budget. Do not guess
-IDs, enumerate a catalog, or use names/questions as IDs. `knowledge-focus-unobserved` means the
-reference was not verified in this state, not proof that the player does not own it;
-`knowledge-focus-unmapped` means it was selected but Server returned no reviewed definition.
-Neither a priority request nor a returned definition proves live ownership or complete coverage.
+`--focus-entity OBSERVED_ID` prioritizes one ID already in verified `stateFacts`, inside the same 128-reference budget. Do not guess IDs or pass names as IDs. `knowledge-focus-unobserved` means it was not verified in this state, not that the player lacks it. `knowledge-focus-unmapped` means Server returned no reviewed definition. Neither proves live ownership or complete coverage.
 
-Use `readiness` for any saved whole-build review: after a level-up, new companion, strong acquisition, accumulated resources, before a difficult segment, or whenever the player wants to reorganize. It intentionally requests the union of character stats, inventory, equipment, party, learned/equipped skills, job points, and resources, plus reviewed character/job/skill/equipment/item definitions. Read [build-readiness-review.md](build-readiness-review.md) for its checkpoint and recommendation rules.
+`readiness` is the saved whole-build review: stats, inventory, equipment, party, learned and equipped skills, job points, resources, and the matching definitions. Checkpoint and recommendation rules: [build-readiness-review.md](build-readiness-review.md). When the Boss or build screen is needed, `readiness-context` joins that same capture's frame. Open `frameArtifacts` only when `frameCurrent=true`. A fresh frame does not fill a missing structured capability or change a checkpoint's freshness. Construction or exploration that needs the screen uses `visual-context`. A frame-only result proves visible fields, not a learned-recipe catalog, a complete inventory, a reachable route, or material in inaccessible storage.
 
-When the current Boss or build screen is needed too, prefer `readiness-context`. Its `game`
-contains the same capture's structured readiness context; `frameArtifacts` are local and usable
-only with `frameCurrent=true`. Read the image before interpreting visible state. A fresh frame
-does not fill a missing structured capability or change a checkpoint's freshness/owner.
+The answer is complete for a claim only when the relevant facts, definitions, and capabilities are present. `decisionPolicy` is the Server-authorized Build- and purpose-specific minimum. Do not reconstruct a missing policy. `missingCapabilities` lists unproved required state and `entity-type:*` definitions that were not returned. It is a fallback plan, not an empty inventory. `--cached` is only for an explicit offline rules or history answer. Keep `stateChangedAt`, `stateVerifiedAt`, and `stateStale` distinct.
 
-For a construction or exploration question needing the screen, prefer `visual-context --purpose
-construction|exploration`: its `game` and local current frame share one observation. Open only when
-`frameCurrent=true`; absence or failure cannot replay a retained frame. A reviewed frame-only policy
-may require no entity definitions, but this proves only visible fields, not a learned-recipe catalog,
-complete inventory, reachable route or material availability in inaccessible storage. Keep any checkpoint
-facts labelled as saved and follow the remaining `missingCapabilities` and purpose-specific fallback.
+A missing inventory does not erase an independently visible cue or a known saved level, and neither proves the current build. After access, Build, and purpose checks pass, public research may supplement mechanics. Attribute it separately. Do not add it to `stateFacts` or use it to fabricate state.
 
-The response is usable as a complete structured answer only when the relevant state facts, reviewed entity definitions, and required capabilities are present. Read `decisionPolicy`: it is the Server-authorized, exact-Build and purpose-specific minimum state, entity type, comparison, objective, output, and fallback slice. Do not reconstruct a missing policy from remembered rules or stale local files. `missingCapabilities` includes required policy state that was not proved by the current facts/capabilities and `entity-type:*` entries for required Build-scoped definitions that were not returned; it is a bounded fallback plan, not an empty inventory. Use `--cached` only for an explicitly offline rules/history answer; preserve both `stateChangedAt` (the save content changed) and `stateVerifiedAt` (the same content was most recently rechecked), plus `stateStale`, in the answer.
+When `progress.location.trust` is `trust-if-screen-matches` and the screen agrees, or the player just loaded that save, say the place with 「根据上次存档」. Pixels suit the current dialogue, a highlighted choice, map geometry, an unsaved menu selection, animation, appearance, or a parser check. They are not the long-term database for a growing list.
 
-Completeness is claim-specific: a missing inventory cannot invalidate an independently visible
-attack cue or a known saved level, but neither proves a full current build. The policy constrains
-evidence and product behavior; it does not replace the Agent's reasoning or require an exhaustive
-catalog. After successful access/Build/purpose checks, relevant public source research may supplement
-mechanics or context. Attribute it separately, check applicability and uncertainty, and do not add
-it to `stateFacts`, silently import it into reviewed catalogs, or use it to fabricate missing state.
+## Saves
 
-A save checkpoint is not live state, but it is not worthless either. When `progress.location.trust` is
-`trust-if-screen-matches` and the screen agrees (or the player just loaded that save), say the place as fact with
-「根据上次存档」. When a reviewed route guide is present, answer "what next" and boss questions from it instead of
-sending the player to a menu; label inferences as inferences.
-
-Pixels remain appropriate for current dialogue, a highlighted choice, map geometry, an unsaved menu selection, animation, appearance, visual quality, or confirming a new parser mapping. Pixels should not be the long-term database for a growing skill/equipment/inventory list.
-
-## Save adapters
-
-- Keep adapters read-only and open live files with sharing enabled where the platform permits it.
-- Return minimized semantic fields, provenance, file observation time, active-slot confidence, and parse warnings. Never emit or retain raw saves in snapshots.
-- Distinguish autosave, manual slots, system data, and Steam Cloud metadata. The newest file is not automatically the active or intended slot.
-- Validate a field through controlled before/after saves with one changed variable. Require at least two consistent observations before promoting a mapping from experimental.
-- Bind mappings to AppID, BuildID, platform, save schema version or signature, and DLC/mode where relevant.
-- Stop parsing at the first schema conflict. Do not silently carry offsets or property names across updates.
-- Never write a save, inspect process memory, bypass encryption, disable anti-cheat, or obtain a decryption key as part of the normal companion workflow. Process-memory research is a separate, disabled-by-default per-game engineering lane outside this user Skill; it must never be used as an automatic fallback.
+Open live files read-only, with sharing where the platform allows. Return minimized fields, provenance, observation time, active-slot confidence, and parse warnings. Never retain raw saves in snapshots. The newest file is not automatically the active slot. Distinguish autosave, manual slots, system data, and Steam Cloud metadata. Stop at the first schema conflict. Never write a save, inspect process memory, bypass encryption, disable anti-cheat, or obtain a decryption key as part of the normal companion workflow. Process-memory research is a separate, disabled-by-default per-game engineering lane outside this user Skill; it must never be used as an automatic fallback.
 
 Oxygen Not Included's saved duplicant skill records contain checkpoint-local ordinals,
 native weighted experience and independent mastery/grant record counts. Join an ordinal
@@ -130,54 +72,12 @@ inform a saved-progress review, not identify a duplicant by name or prove active
 morale requirements or an optimal respec. For a current skill decision, use the relevant
 duplicant/skill page when the necessary effective information is not otherwise available.
 
-## Static entity catalogs
+## Definitions the Server returns
 
-Keep a per-game, build-scoped catalog outside the total Skill. Store only normalized facts and permitted text, not copyrighted raw tables or assets. Each entity should carry:
+Do not bulk-import an unreviewed wiki, request an empty or full catalog, enumerate guessed IDs, or fall back to a legacy local static catalog. After the pack guard, Navigator may send `gameId`, exact `buildId`, purpose, its installation id, and at most 128 entity IDs already observed locally. Server checks entitlement and the installed package, then returns the purpose policy and the matching subset. Relations return only when both ends are in that subset. `target-knowledge` (see operations) is a static topic: the free-text name stays local, only the matched canonical ID is sent, and the definition must not be added to `stateFacts` or treated as the current opponent or current effective values. A static wire rating does not establish network membership, load, materials, or circuit capacity.
 
-- stable ID and aliases;
-- category and localized display name;
-- exact visible effect fields such as target, weapon/element, hits, SP cost, potency class, duration, conditions, and restrictions;
-- provenance, observation time, applicable Build, confidence, and conflicts.
+## Compare, then stop
 
-Do not bulk-import an unreviewed wiki into authoritative storage. Candidate catalogs can accelerate discovery, but important numbers and conditions require in-game, official, or independently validated support.
+Compare current ownership and equipped slot, role, cost, conditions, restrictions, overlap, and what a later pickup would replace. Separate exact fields from inference. A name or icon does not establish hit count, range, cost, or potency.
 
-The commercial Server keeps the reviewed Build-scoped `entities.json`, decision model, provenance research, and
-performance guidance private. A user's installed Game Navigation Pack contains only the minimal identity and Build
-routing manifest. After the pack guard succeeds, Navigator may send the current `gameId`, exact `buildId`, purpose,
-its random Navigator installation id, and at most 128 entity IDs already observed in the player's local structured
-state. Server verifies current entitlement plus an exact installed package row/version, then returns only the
-purpose policy and matching reviewed entity subset; relations are returned only when both endpoints are in that
-subset. Never request an empty/full catalog, enumerate guessed IDs, or fall back to a legacy local static catalog.
-Legacy source packs may still be imported by migration and test tooling, but they are not the commercial runtime
-payload.
-
-An explicitly named Boss or reviewed wire type has a separate bounded lookup (`target-knowledge`, see operations).
-Its reviewed public-name index is authorized by the same installed pack and matched locally;
-only that match's canonical ID is sent back for a reviewed definition. The free-text name and
-question remain local. This is a static topic, not an observed player-state reference, and must
-never be added to `stateFacts` or used to claim a current opponent or current effective values.
-A static wire rating does not establish network membership, current load, available materials
-or effective circuit capacity; those require their own eligible player observations.
-
-## Comparing skills or equipment
-
-Build one compact comparison from the joined state and catalog:
-
-1. current ownership and equipped slot;
-2. role: break, damage, sustain, control, exploration, or economy;
-3. target, weapon/element, hits, cost, conditions, and restrictions;
-4. overlap and complementary coverage;
-5. best scene for each option;
-6. recommendation now and what future acquisition would replace it.
-
-Separate exact fields from inference. A name or icon can suggest a hypothesis but cannot establish hit count, target range, cost, or potency.
-
-## Bounded fallback
-
-After access, Build, purpose and permission checks pass, use the reliable evidence already returned. A missing or uncertain field is not a reason to force a hidden-state reader, install an observer or abandon independently supported advice.
-
-If a fact matters to the answer but is unavailable, stale for a current-state question, low-confidence or contradictory, ask the player to open one relevant in-game page, then inspect a new authorized current frame. For example: 「打开装备页，让我看看你现在穿的装备，再帮你比较。」 or 「打开技能面板，让我确认一下当前加点。」 Ask for the useful action, not for the player to verify internal JSON or type out the whole inventory. Do not interrupt combat merely to complete a checklist: offer supported tactics first and suggest the page when it is safe. Equipment, skills, map, quest, recipe or city-budget pages are examples, not mandatory steps for every game.
-
-Inspect what is actually visible, including the selected character, slot, filter and detail panel. A current visible value can correct a stale checkpoint for this answer, but does not rewrite that checkpoint's provenance or prove off-screen completeness. If a second page is genuinely needed, explain the remaining gap after the first inspection; never start an automatic capture loop or repeatedly request evidence already sufficient. If the player declines, the page is inaccessible or the new frame fails, continue the narrower supported help and state the uncertainty.
-
-For a recurring collection gap, prefer a page that exposes the relevant owned set and details, inspect only the bounded portion needed, and retain only confirmed normalized local facts with source and freshness. Do not turn temporary screen help into a screenshot archive, exhaustive menu tour or claim that semantic parsing is now available.
+After the checks pass, use the evidence already returned. A gap is not a reason to force a hidden-state reader, install an observer, or drop independently supported advice. If one fact still matters, ask the player to open that page, then read one new authorized frame. For example: 「打开装备页，让我看看你现在穿的装备，再帮你比较。」 Do not ask them to type the inventory or to verify JSON. Do not interrupt combat for a checklist. A visible value can correct a stale checkpoint for this answer without rewriting that checkpoint or proving off-screen completeness. One further page needs an explained remaining gap. If they decline or the frame fails, continue the narrower help and name the uncertainty. Do not turn the screen into a screenshot archive or claim that semantic parsing is now available.

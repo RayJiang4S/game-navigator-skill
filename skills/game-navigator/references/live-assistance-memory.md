@@ -24,13 +24,11 @@ Reuse this context across consecutive follow-ups while the game, BuildID, foregr
 | Reusable personal translation convention | `translation_terms` | Persist only after the player explicitly confirms the wording. |
 | Unresolved mechanic that needs a controlled test | exploration experiment | Store hypothesis, steps, stop condition, and result. |
 
-The source mode does not determine the destination. For example, “collect this at the tavern” seen during translation becomes the same bookmark that a navigation answer would create; an equipment term learned during route guidance still requires explicit confirmation before entering the glossary.
+The source mode does not determine the destination. A future action noticed while translating is the same bookmark a navigation answer would create. An equipment term still needs explicit confirmation before it enters the glossary.
 
 ## Conditional bookmarks
 
-Create a `return-later` bookmark when evidence provides a useful action plus a recognizable future trigger and the game is unlikely to preserve the same personal context. Sources can be translated text, visible world geometry, dialogue, tutorials, shop stock, locked encounters, NPC promises, save/log data, or researched guidance.
-
-Examples include collecting a linked-save reward at a tavern, returning after a level threshold, revisiting a merchant with enough money or an item, and retrying an encounter after a party/build condition is met.
+Create a `return-later` bookmark when evidence provides a useful action plus a recognizable future trigger and the game is unlikely to preserve that personal context. Sources can be translated text, visible world geometry, dialogue, tutorials, shop stock, locked encounters, NPC promises, save or log data, or researched guidance.
 
 Do not duplicate a normal quest whose marker and condition are already clear. Do not store decorative lore, ordinary translated prose, a speculative consequence, or generic walkthrough advice. If the action or trigger is inferred rather than observed, state the uncertainty and ask before persisting.
 
