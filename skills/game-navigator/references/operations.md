@@ -137,6 +137,8 @@ The default window holds up to64 recent known facts. Older ones: up to16 repeate
 
 ## Fullscreen capture
 
+The quest panel is 「任务」 / Quests (J). Do not call it 任务日志, quest journal, or Questtagebuch. The map panel is 「世界地图」 / World Map (M). A level, available points, or equipped skills on this frame come from 「角色」 / Character (K); a saved level is not that frame.
+
 A DX12 fullscreen present can leave the game-window capture black while the monitor still shows the scene. Play then keeps only the foreground game-window rectangle. A dark journal under two percent bright is kept. Do not ask the player to change fullscreen, borderless, or windowed. If the game is not the foreground, or the rectangle does not match, Play does not keep the monitor image. A notification outside that rectangle is dropped.
 
 Play OCRs with the Windows languages installed on that PC: the map-title crop, the journal list, the journal objective column, a doubled crop for small light-on-dark type, and a tripled quest-tracker crop. A line is a fight card only when it contains one reviewed official name. The map title names the region only after a reviewed map-legend heading shows the map is open. A place name in an ordinary line is a mention, not the current region. An OCR pass with no words is empty, not recognition. Speak the player's language from the reviewed labels. Do not switch to another language field or read a world-file path. The saved world fact uses the same labels. Unread text is not a quest, objective, or enemy. When those crops are empty, answer from the save checkpoint, an open map title, and achievements if asked. Do not invent the quest or the fight.
